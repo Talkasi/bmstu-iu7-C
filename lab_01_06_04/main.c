@@ -1,9 +1,9 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 int main()
 {
-    double xq, yq, xr, yr, xp, yp, eps = 1e-10, folder, k , b;
+    double xq, yq, xr, yr, xp, yp, eps = 1e-10, folder, k, b;
 
     printf("Enter x of the point q: ");
     if (scanf("%lf", &xq) != 1)
@@ -70,7 +70,7 @@ int main()
     }
     else
     {
-        if (fabs(xp - xq) > eps || (fabs(xp - xq) <= eps  && (yp < yq || yp > yr)))
+        if (fabs(xp - xq) > eps || (fabs(xp - xq) <= eps && (yp < yq || yp > yr)))
             printf("0");
         else
             printf("1");
