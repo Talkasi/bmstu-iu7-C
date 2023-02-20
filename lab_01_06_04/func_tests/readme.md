@@ -12,3 +12,4 @@
 - Crossing axes.
 ## Negative tests
 - One of the parameters is not a number.
+- There is no line segment with given data
