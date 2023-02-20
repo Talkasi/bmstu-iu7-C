@@ -37,7 +37,8 @@ int main()
 
     if (xr - xq < eps && yr - yq < eps)
     {
-        printf("This is not a line segment.") return 1;
+        printf("This is not a line segment.");
+        return 1;
     }
 
     printf("Enter x of the point p: ");
