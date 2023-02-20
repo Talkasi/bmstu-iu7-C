@@ -37,8 +37,7 @@ int main()
 
     if (xr - xq < eps && yr - yq < eps)
     {
-        printf("This is not a line segment.")
-        return 1;
+        printf("This is not a line segment.") return 1;
     }
 
     printf("Enter x of the point p: ");
@@ -65,7 +64,6 @@ int main()
         xr = xq;
         xq = folder;
     }
-
 
     if ((yp - yq) * (xq - xr) - (yp - yr) * (xp - xq) < eps && yp <= yr && yp >= yq)
         printf("1");
