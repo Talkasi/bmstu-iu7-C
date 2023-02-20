@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int main()
 {
@@ -35,7 +36,7 @@ int main()
         return 1;
     }
 
-    if (xr - xq < eps && yr - yq < eps)
+    if (fabs(xr - xq) < eps && fabs(yr - yq) < eps)
     {
         printf("This is not a line segment.");
         return 1;
