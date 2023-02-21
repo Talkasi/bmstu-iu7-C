@@ -1,13 +1,13 @@
 # Lab_01_03_01 tests
 ## Input data
-- int n
+- int n;
 ## Output data
-- primes, separated by space
+- primes, separated by space.
 ## Positive tests
 - The smallest valid number `1`;
 - Smallest prime number;
 - Prime number;
-- Simple test;
+- Test with normal values;
 - Power of a prime number;
 - Big number.
 ## Negative tests
