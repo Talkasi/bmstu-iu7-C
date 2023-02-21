@@ -5,7 +5,8 @@
 
 int main()
 {
-    int n_flat, n_floor, n_entrance;
+    int n_flat;
+    int n_floor, n_entrance;
 
     printf("Enter number of the flat: ");
     if (scanf("%d", &n_flat) != 1 || n_flat <= 0)
