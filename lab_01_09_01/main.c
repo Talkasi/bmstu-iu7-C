@@ -8,7 +8,8 @@ int main()
     double n = 1.0;
 
     printf("Enter first number: ");
-    if (scanf("%lf", &x) != 1 || x < 0) {
+    if (scanf("%lf", &x) != 1 || x < 0)
+    {
         printf("Input error.\n");
         return 1;
     }
@@ -18,7 +19,8 @@ int main()
         g += sqrt(x / n);
         ++n;
         printf("Enter next number: ");
-        if (scanf("%lf", &x) != 1) {
+        if (scanf("%lf", &x) != 1)
+        {
             printf("Input error.\n");
             return 1;
         }
