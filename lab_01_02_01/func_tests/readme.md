@@ -1,8 +1,8 @@
 # Lab_01_02_01 tests
 ## Input data
-- double a, b, angle_val
+- double a, b, angle_val: **_bases of the trapezoid, the smallest angle_**;
 ## Output data
-- double s
+- double s: **_area of the trapezoid_**;
 ## Positive tests
 - First base is bigger than the second;
 - First base is lower than the second.

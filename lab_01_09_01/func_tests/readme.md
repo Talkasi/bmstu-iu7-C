@@ -1,8 +1,8 @@
 # Lab_01_09_01 tests
 ## Input data
-- double x;
+- double precision floating point numbers;
 ## Output data
-- double g;
+- double g: computed function value;
 ## Positive tests
 - Sequence of integers, contains zero;
 - Sequence contains floating point number;

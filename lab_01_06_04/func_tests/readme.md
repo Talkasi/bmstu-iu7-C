@@ -1,15 +1,15 @@
-# Lab_01_03_01 tests
+# Lab_01_06_04 tests
 ## Input data
-- double xq, yq, xr, yr, xp, yp;
+- double xq, yq, xr, yr, xp, yp: _**coordinates of points `q`, `r` and `p`**_;
 ## Output data
-- 0 or 1.
+- `0` or `1`: _**`1` if `p` is on the `qr` line segment otherwise `0`**_.
 ## Positive tests
-- Straight line: `y = const`, point is on the line;
-- Straight line: `y = const`, point isn't on the line;
-- Straight line: `x = const`, point is on the line;
-- Straight line: `x = const`, point isn't on the line;
-- Test with the normal values;
-- Test crossing axes.
+- Straight line: `y = const`, point is on the line segment;
+- Straight line: `y = const`, point isn't on the line segment;
+- Straight line: `x = const`, point is on the line segment;
+- Straight line: `x = const`, point isn't on the line segment;
+- Test with real numbers;
+- Test with line segment crossing axes.
 ## Negative tests
 - `xq` is not a number;
 - `yq` is not a number;

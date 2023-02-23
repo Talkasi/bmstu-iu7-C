@@ -1,9 +1,9 @@
 # Lab_01_01 tests
 ## Input data
-- None
+- None.
 ## Output data
-- String: "Year has 56 weeks"
+- String: "Year has 56 weeks".
 ## Positive tests
-- Simple output check
+- Simple output check.
 ## Negative tests
-- None
+- None.
