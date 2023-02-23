@@ -4,14 +4,13 @@
 #define BYTE_LENGTH 8
 #define N_BYTES 4
 
-int print_bin_representation(uint32_t integer);
+void print_bin_representation(uint32_t integer);
 
 int main()
 {
     unsigned char byte;
     int shifter = BYTE_LENGTH * (N_BYTES - 1);
     uint32_t integer = 0;
-    uint32_t fifteen = 0xFF;
 
     for (int i = 0; i < N_BYTES; ++i)
     {
@@ -31,15 +30,12 @@ int main()
 
     for (int i = 0; i < N_BYTES; ++i)
     {
-        printf(" %u", (integer & fifteen << BYTE_LENGTH * (N_BYTES - i - 1)) >> BYTE_LENGTH * (N_BYTES - i - 1));
+        printf(" %u", (integer & 0xFFU << BYTE_LENGTH * (N_BYTES - i - 1)) >> BYTE_LENGTH * (N_BYTES - i - 1));
     }
 }
 
-int print_bin_representation(uint32_t integer)
+void print_bin_representation(uint32_t integer)
 {
-    uint32_t one = 1;
     for (int i = 31; i >= 0; --i)
-        printf("%d", (integer & (one << i)) != 0);
-
-    return 0;
+        printf("%d", (integer & (1L << i)) != 0);
 }
