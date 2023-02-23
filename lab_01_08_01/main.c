@@ -30,12 +30,12 @@ int main()
 
     for (int i = 0; i < N_BYTES; ++i)
     {
-        printf(" %u", (integer & 0xFFU << BYTE_LENGTH * (N_BYTES - i - 1)) >> BYTE_LENGTH * (N_BYTES - i - 1));
+        printf(" %lu", (integer & 0xFFUL << BYTE_LENGTH * (N_BYTES - i - 1)) >> BYTE_LENGTH * (N_BYTES - i - 1));
     }
 }
 
 void print_bin_representation(uint32_t integer)
 {
     for (int i = 31; i >= 0; --i)
-        printf("%d", (integer & (1L << i)) != 0);
+        printf("%d", (integer & (1UL << i)) != 0);
 }
