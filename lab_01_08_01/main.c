@@ -9,8 +9,9 @@ int print_bin_representation(uint32_t integer);
 int main()
 {
     unsigned char byte;
-    uint32_t integer = 0, fifteen = 0xFF;
     int shifter = BYTE_LENGTH * (N_BYTES - 1);
+    uint32_t integer = 0;
+    uint32_t fifteen = 0xFF;
 
     for (int i = 0; i < N_BYTES; ++i)
     {

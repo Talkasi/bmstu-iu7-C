@@ -1,13 +1,13 @@
-# Lab_01_03_01 tests
+# Lab_01_05_04 tests
 ## Input data
-- int n;
+- int n: _**natural number**_.
 ## Output data
-- primes, separated by space.
+- **_prime factors of n, separated by space_**.
 ## Positive tests
 - The smallest valid number `1`;
-- Smallest prime number;
+- The smallest prime number;
 - Prime number;
-- Test with normal values;
+- Small non-prime number;
 - Power of a prime number;
 - Big number.
 ## Negative tests

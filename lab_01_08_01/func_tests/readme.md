@@ -3,7 +3,7 @@
 - unsigned char byte1, byte2, byte3, byte4;
 ## Output data
 - Binary representation of an unsigned integer made up from 4 bytes;
-- Four bytes recreated from Binary representation of an unsigned integer;
+- Four bytes recreated from binary representation of an unsigned integer;
 ## Positive tests
 - Four different bytes;
 - Simple test: four `1`;
