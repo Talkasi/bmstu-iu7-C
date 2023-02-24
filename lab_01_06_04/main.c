@@ -1,6 +1,9 @@
 #include <math.h>
 #include <stdio.h>
 
+#define ON_LINE_SEGMENT 1
+#define OUT_OF_LINE_SEGMENT 0
+
 int main()
 {
     double xq, yq;
@@ -68,9 +71,9 @@ int main()
     }
 
     if ((yp - yq) * (xq - xr) - (yp - yr) * (xp - xq) < eps && yp <= yr && yp >= yq)
-        printf("1");
+        printf("Resulting status: %d", ON_LINE_SEGMENT);
     else
-        printf("0");
+        printf("Resulting status: %d", OUT_OF_LINE_SEGMENT);
 
     return 0;
 }

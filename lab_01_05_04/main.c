@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int is_prime(int n);
-void primes(int n);
+void prime_factors(int n);
 
 int main()
 {
@@ -16,7 +16,7 @@ int main()
     }
 
     if (n > 1)
-        primes(n);
+        prime_factors(n);
 
     return 0;
 }
@@ -33,7 +33,7 @@ int is_prime(int n)
     return 1;
 }
 
-void primes(int n)
+void prime_factors(int n)
 {
     int border;
     printf("Answer: ");
