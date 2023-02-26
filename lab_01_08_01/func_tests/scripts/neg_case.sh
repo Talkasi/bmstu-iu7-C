@@ -5,7 +5,7 @@ if [ -z "$1" ] ; then
   exit 1
 fi
 
-if ../../app.exe < "$1" > /dev/null; then
+if ./app.exe < "$1" > /dev/null; then
   exit 1
 else
   exit 0

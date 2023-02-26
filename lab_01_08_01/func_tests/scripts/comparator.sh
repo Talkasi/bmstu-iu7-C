@@ -4,10 +4,9 @@
 # $2 stores file2
 # $3 stores verbose key
 
-# Checks values given to the script for errors
-# and through an error to the stderr and 1 exit value if error occurred
+
 error_check(){
-	local valid_command="Valid command is: comparator3.sh file_name1 file_name2 [-v]"
+	local valid_command="Valid command is: comparator.sh file_name1 file_name2 [-v]"
 
 	if [ ! -f "$1" ]; then
 		echo -e "[!]Error. First parameter is not a file or this file doesn't exist.\n" >&2
@@ -40,53 +39,71 @@ error_check(){
 	fi
 }
 
-
-numbers_searcher() {
-	file="$(mktemp)"
-	were_numbers=0
-
-	DONE=false
-	until $DONE; do
-		read -r line || DONE=true
-
-		for word in $line; do
-			# Check if the word is floating point number or integer or number in scientific notation
-			# Regular expression ^[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?$
-			# is used for that
-			if [[ "$word" =~ ^[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?$ ]]; then
-	            were_numbers=1
-	            echo "$word" >> "$file"
-	        fi
-		done
-	done < "$1"
-
-	if [ $were_numbers -eq 0 ]; then
-		echo "[!]Error. There is no suitable floating point numbers in file '$1'" >&2
-
-		exit 1
-	fi
-}
-
-
 error_check "$1" "$2" "$3" "$4"
 
-file=""
+old_IFS=$IFS
+IFS=""
 
-numbers_searcher "$1"
-file1="$file"
-numbers_searcher "$2"
-file2="$file"
+file1="$(mktemp)"
+search_status=0
+
+DONE=false
+until $DONE; do
+	read -r line || DONE=true
+    if [ $search_status -eq 0 ]; then
+        if [[ "$line" == *"Result:"* ]]; then
+            search_status=1
+            new_line="$(echo "$line" | grep -Eo "Result:.*")"
+            echo "$new_line" > "$file1"
+        fi
+    else
+        echo "$line" >> "$file1"
+    fi
+done < "$1"
+
+if [ $search_status -eq 0 ]; then
+	rm "$file1"
+	echo -e "[!]Error. There is no 'Result:' in the file $1\n" >&2
+	IFS=$old_IFS
+	exit 1
+fi
+
+file2="$(mktemp)"
+search_status=0
+DONE=false
+until $DONE; do
+	read -r line || DONE=true
+    if [ $search_status -eq 0 ]; then
+        if [[ "$line" == *"Result:"* ]]; then
+            search_status=1
+            new_line="$(echo "$line" | grep -Eo "Result:.*")"
+            echo "$new_line" > "$file2"
+        fi
+    else
+        echo "$line" >> "$file2"
+    fi
+done < "$2"
+
+if [ $search_status -eq 0 ]; then
+	rm "$file1" "$file2"
+	IFS=$old_IFS
+
+	echo -e "[!]Error. There is no 'Result:' in the file $2\n" >&2
+	exit 1
+fi
+
+IFS=$old_IFS
 
 if cmp -s "$file1" "$file2" ; then
 	if [ "$3" == "-v" ] || [ "$3" == "--verbose" ]; then
-		echo "[+]Corresponding numbers in given files are equal."
+		echo '[+]Texts after first "Result:" in given files are equal.'
 	fi
 	rm "$file1" "$file2"
 
 	exit 0
 else
 	if [ "$3" == "-v" ] || [ "$3" == "--verbose" ]; then
-		echo "[-]Corresponding numbers in given files are NOT equal."
+		echo '[-]Texts after first "Result:" in given files are NOT equal.'
 	fi
 	rm "$file1" "$file2"
 
