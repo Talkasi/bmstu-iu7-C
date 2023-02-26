@@ -3,13 +3,13 @@
 #define NFLATS_ON_FLOOR 4
 #define NFLATS_ON_ENTRANCE 36
 
-int main()
+int main(void)
 {
     int n_flat;
     int n_floor, n_entrance;
 
     printf("Enter number of the flat: ");
-    if (scanf("%d", &n_flat) != 1 || n_flat <= 0)
+    if (scanf("%d", &n_flat) != 1 || n_flat <= 0.0)
     {
         printf("Input error. Number of the flat should be bigger than zero.");
         return 1;
