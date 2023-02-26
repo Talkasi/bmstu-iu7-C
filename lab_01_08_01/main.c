@@ -1,20 +1,20 @@
 #include <inttypes.h>
+#include <limits.h>
 #include <stdio.h>
 
-#define BYTE_LENGTH 8
-#define N_BYTES 4
+#define N_BYTES (int)sizeof(uint32_t)
 
 void print_bin_representation(uint32_t integer);
 
-int main()
+int main(void)
 {
     unsigned char byte;
-    int shifter = BYTE_LENGTH * (N_BYTES - 1);
+    int shifter = CHAR_BIT * (N_BYTES - 1);
     uint32_t integer = 0;
 
     for (int i = 0; i < N_BYTES; ++i)
     {
-        printf("Enter byte #%d: ", i);
+        printf("Enter byte: ");
         if (scanf("%hhu", &byte) != 1)
         {
             printf("Error: Input error.\n");
@@ -22,7 +22,7 @@ int main()
         }
 
         integer |= (byte << shifter);
-        shifter -= BYTE_LENGTH;
+        shifter -= CHAR_BIT;
     }
 
     printf("Result: ");
@@ -30,12 +30,12 @@ int main()
 
     for (int i = 0; i < N_BYTES; ++i)
     {
-        printf(" %lu", (integer & 0xFFUL << BYTE_LENGTH * (N_BYTES - i - 1)) >> BYTE_LENGTH * (N_BYTES - i - 1));
+        printf(" %lu", (integer & 0xFFUL << CHAR_BIT * (N_BYTES - i - 1)) >> CHAR_BIT * (N_BYTES - i - 1));
     }
 }
 
 void print_bin_representation(uint32_t integer)
 {
-    for (int i = 31; i >= 0; --i)
+    for (int i = N_BYTES * CHAR_BIT - 1; i >= 0; --i)
         printf("%d", (integer & (1UL << i)) != 0);
 }
