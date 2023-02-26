@@ -6,14 +6,14 @@ int main(void)
     double v2, t2;
     double v, t;
 
-    printf("Enter number of liters V1 and temperature T1: ");
+    printf("Enter the first number of liters and temperature: ");
     if (scanf("%lf %lf", &v1, &t1) != 2 || v1 <= 0.0)
     {
         printf("Input error.\n");
         return 1;
     }
 
-    printf("Enter number of liters V2 and temperature T2: ");
+    printf("Enter the second number of liters and temperature: ");
     if (scanf("%lf %lf", &v2, &t2) != 2 || v2 <= 0.0)
     {
         printf("Input error.\n");
