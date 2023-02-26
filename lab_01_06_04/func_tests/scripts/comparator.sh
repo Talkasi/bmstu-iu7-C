@@ -7,7 +7,7 @@
 # Checks values given to the script for errors
 # and through an error to the stderr and 1 exit value if error occurred
 error_check() {
-  local valid_command="Valid command is: comparator3.sh file_name1 file_name2 [-v]"
+  local valid_command="Valid command is: comparator.sh file_name1 file_name2 [-v]"
 
   if [ ! -f "$1" ]; then
     echo -e "[!]Error. First parameter is not a file or this file doesn't exist.\n" >&2
@@ -42,7 +42,6 @@ error_check() {
 
 numbers_searcher() {
   file="$(mktemp)"
-  were_numbers=0
 
   DONE=false
   until $DONE; do
@@ -52,18 +51,11 @@ numbers_searcher() {
       # Check if the word is floating point number or integer or number in scientific notation
       # Regular expression ^[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?$
       # is used for that
-      if [[ "$word" =~ ^[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?$ ]]; then
-        were_numbers=1
+      if [[ "$word" =~ ^[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?[\r]?$ ]]; then
         echo "$word" >>"$file"
       fi
     done
   done <"$1"
-
-  if [ $were_numbers -eq 0 ]; then
-    echo "[!]Error. There are no suitable floating point numbers in file '$1'" >&2
-
-    exit 1
-  fi
 }
 
 error_check "$1" "$2" "$3" "$4"
