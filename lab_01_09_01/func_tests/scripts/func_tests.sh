@@ -7,16 +7,16 @@ NC='\033[0m' # No Color
 
 # Positive tests
 echo "> Positive tests"
-for in_file in ../data/pos_*_in.txt; do
+for in_file in func_tests/data/pos_*_in.txt; do
   test_number=$(echo "$in_file" | grep -o "[0-9]*")
   if [ -z "$test_number" ]; then
     echo "There are no positive tests"
     break
   fi
 
-  out_file="../data/pos_""$test_number""_out.txt"
+  out_file="func_tests/data/pos_""$test_number""_out.txt"
 
-  if ./pos_case.sh "$in_file" "$out_file"; then
+  if func_tests/scripts/pos_case.sh "$in_file" "$out_file"; then
     echo -e "Test ""$test_number"": ${GREEN}PASSED${NC}"
   else
     n_failed=$((n_failed + 1))
@@ -26,14 +26,14 @@ done
 
 # Negative tests
 echo "> Negative tests"
-for in_file in ../data/neg_*_in.txt; do
+for in_file in func_tests/data/neg_*_in.txt; do
   test_number=$(echo "$in_file" | grep -o "[0-9]*")
   if [ -z "$test_number" ]; then
     echo "There are no negative tests"
     break
   fi
 
-  if ./neg_case.sh "$in_file"; then
+  if func_tests/scripts/neg_case.sh "$in_file"; then
     echo -e "Test ""$test_number"": ${GREEN}PASSED${NC}"
   else
     n_failed=$((n_failed + 1))
