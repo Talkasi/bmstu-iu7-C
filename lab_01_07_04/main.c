@@ -31,7 +31,6 @@ int main(void)
 
     printf("S(x): %.6lf\nF(x): %.6lf\n", s, f);
     printf("Absolute error: %.6lf\nRelative error: %.6lf\n", absolute_error, relative_error);
-
     return 0;
 }
 

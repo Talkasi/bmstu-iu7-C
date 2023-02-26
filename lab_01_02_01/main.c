@@ -47,6 +47,5 @@ int main(void)
     s = tan(angle_val * PI / 180.0) * (b - a) * (a + b) / 4.0;
 
     printf("The answer is: %.6lf\n", s);
-
     return 0;
 }

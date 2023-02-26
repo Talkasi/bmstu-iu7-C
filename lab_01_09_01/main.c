@@ -28,4 +28,5 @@ int main(void)
     g = sin(g);
 
     printf("%.6lf", g);
+    return 0;
 }

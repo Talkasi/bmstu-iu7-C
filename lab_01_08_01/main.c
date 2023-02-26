@@ -32,6 +32,7 @@ int main(void)
     {
         printf(" %lu", (integer & 0xFFUL << CHAR_BIT * (N_BYTES - i - 1)) >> CHAR_BIT * (N_BYTES - i - 1));
     }
+    return 0;
 }
 
 void print_bin_representation(uint32_t integer)
