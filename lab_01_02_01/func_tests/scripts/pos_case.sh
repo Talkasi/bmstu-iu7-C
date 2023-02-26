@@ -6,9 +6,9 @@ if [ -z "$1" ] || [ -z "$2" ] ; then
 fi
 
 file="$(mktemp)"
-../../app.exe < "$1" > "$file"
+./app.exe < "$1" > "$file"
 
-if ./comparator.sh "$file" "$2"; then
+if func_tests/scripts/comparator.sh "$file" "$2"; then
   rm "$file"
   exit 0
 else
