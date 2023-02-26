@@ -1,10 +1,8 @@
-#include <math.h>
 #include <stdio.h>
 
-int is_prime(int n);
-void prime_factors(int n);
+void print_prime_factors(int n);
 
-int main()
+int main(void)
 {
     int n;
 
@@ -16,40 +14,27 @@ int main()
     }
 
     if (n > 1)
-        prime_factors(n);
+    {
+        printf("Answer: ");
+        print_prime_factors(n);
+    }
 
     return 0;
 }
 
-int is_prime(int n)
+void print_prime_factors(int n)
 {
-    if (n == 2)
-        return 1;
-
-    for (int i = 2; i <= ceil(sqrt(n)); ++i)
-        if (n % i == 0)
-            return 0;
-
-    return 1;
-}
-
-void prime_factors(int n)
-{
+    int n_given = n;
     int border;
-    printf("Answer: ");
 
-    if (is_prime(n))
-    {
-        printf("%d ", n);
-        return;
-    }
-
-    border = ceil(n / 2.0);
+    border = n / 2 + 1;
     for (int i = 2; i <= border; ++i)
-        if (n % i == 0 && is_prime(i))
-            while (n % i == 0)
-            {
-                printf("%d ", i);
-                n = n / i;
-            }
+        while (n % i == 0)
+        {
+            printf("%d ", i);
+            n = n / i;
+        }
+
+    if (n_given == n)
+        printf("%d", n);
 }
