@@ -2,7 +2,7 @@
 ## Input data
 - None.
 ## Output data
-- String: "Year has 56 weeks".
+- String: "Year has 52 weeks".
 ## Positive tests
 - Simple output check.
 ## Negative tests
