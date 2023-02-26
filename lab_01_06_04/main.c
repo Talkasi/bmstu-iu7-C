@@ -1,59 +1,40 @@
 #include <math.h>
 #include <stdio.h>
 
+#define EPS 1e-8
 #define ON_LINE_SEGMENT 1
 #define OUT_OF_LINE_SEGMENT 0
 
-int main()
+int main(void)
 {
     double xq, yq;
     double xr, yr;
     double xp, yp;
-    double eps = 1e-8, folder;
+    double tmp;
 
-    printf("Enter x of the point q: ");
-    if (scanf("%lf", &xq) != 1)
-    {
-        printf("Input error");
-        return 1;
-    }
-
-    printf("Enter y of the point q: ");
-    if (scanf("%lf", &yq) != 1)
+    printf("Enter x, y of the point q: ");
+    if (scanf("%lf %lf", &xq, &yq) != 2)
     {
         printf("Input error.");
         return 1;
     }
 
-    printf("Enter x of the point r: ");
-    if (scanf("%lf", &xr) != 1)
+    printf("Enter x, y of the point r: ");
+    if (scanf("%lf %lf", &xr, &yr) != 2)
     {
         printf("Input error.");
         return 1;
     }
 
-    printf("Enter y of the point r: ");
-    if (scanf("%lf", &yr) != 1)
-    {
-        printf("Input error.");
-        return 1;
-    }
-
-    if (fabs(xr - xq) < eps && fabs(yr - yq) < eps)
+    /* Check if there is a line segment */
+    if (fabs(xr - xq) < EPS && fabs(yr - yq) < EPS)
     {
         printf("This is not a line segment.");
         return 1;
     }
 
-    printf("Enter x of the point p: ");
-    if (scanf("%lf", &xp) != 1)
-    {
-        printf("Input error.");
-        return 1;
-    }
-
-    printf("Enter y of the point p: ");
-    if (scanf("%lf", &yp) != 1)
+    printf("Enter x, y of the point p: ");
+    if (scanf("%lf %lf", &xp, &yp) != 2)
     {
         printf("Input error.");
         return 1;
@@ -61,16 +42,17 @@ int main()
 
     if (yq > yr)
     {
-        folder = yr;
+        tmp = yr;
         yr = yq;
-        yq = folder;
+        yq = tmp;
 
-        folder = xr;
+        tmp = xr;
         xr = xq;
-        xq = folder;
+        xq = tmp;
     }
 
-    if ((yp - yq) * (xq - xr) - (yp - yr) * (xp - xq) < eps && yp <= yr && yp >= yq)
+    /* Check if point is on the line segment */
+    if ((yp - yq) * (xq - xr) - (yp - yr) * (xp - xq) < EPS && yp <= yr && yp >= yq)
         printf("Resulting status: %d", ON_LINE_SEGMENT);
     else
         printf("Resulting status: %d", OUT_OF_LINE_SEGMENT);
