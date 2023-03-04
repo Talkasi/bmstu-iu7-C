@@ -17,4 +17,5 @@
 - `yr` is not a number;
 - `xp` is not a number;
 - `yp` is not a number;
-- There is no line segment with given data.
+- There is no line segment with given data;
+- File is empty.

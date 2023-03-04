@@ -11,4 +11,5 @@
 - Flat is not in the first entrance.
 ## Negative tests
 - Flat number is zero or lower;
-- Flat parameter is not a number.
+- Flat parameter is not a number;
+- File is empty.

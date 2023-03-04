@@ -23,6 +23,6 @@ int main(void)
     v = v1 + v2;
     t = (v1 * t1 + v2 * t2) / v;
 
-    printf("The volume is: %.6lf \nThe temperature is: %.6lf \n", v, t);
+    printf("The volume is: %.6lf\nThe temperature is: %.6lf\n", v, t);
     return 0;
 }

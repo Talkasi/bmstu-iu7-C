@@ -11,4 +11,5 @@
 - The angle is lower than zero;
 - The angle is bigger than 90;
 - The base of the trapezoid is 0 or less;
-- One of the parameters is not a number.
+- One of the parameters is not a number;
+- File is empty.

@@ -12,4 +12,5 @@
 - Big number.
 ## Negative tests
 - Number is zero or lower;
-- Parameter is not a number.
+- Parameter is not a number;
+- File is empty.
