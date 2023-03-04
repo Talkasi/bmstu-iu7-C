@@ -44,6 +44,7 @@ double s_computation(double x, double eps)
     {
         ++i;
         elem *= -(i + 2) * x / i;
+        printf("NEW ELEM\n");
         s += elem;
     }
 

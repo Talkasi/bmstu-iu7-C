@@ -15,7 +15,7 @@ int main(void)
 
     if (n > 1)
     {
-        printf("Answer: ");
+        printf("Answer:");
         print_prime_factors(n);
     }
 
@@ -24,17 +24,16 @@ int main(void)
 
 void print_prime_factors(int n)
 {
-    int n_given = n;
     int border;
 
     border = n / 2 + 1;
-    for (int i = 2; i <= border; ++i)
+    for (int i = 2; i <= border && n > 1; ++i)
         while (n % i == 0)
         {
-            printf("%d ", i);
+            printf(" %d", i);
             n = n / i;
         }
 
-    if (n_given == n)
-        printf("%d", n);
+    if (n != 1)
+        printf(" %d", n);
 }

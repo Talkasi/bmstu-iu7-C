@@ -21,7 +21,7 @@ int main(void)
             return 1;
         }
 
-        integer |= (byte << shifter);
+        integer |= ((uint32_t)byte << shifter);
         shifter -= CHAR_BIT;
     }
 

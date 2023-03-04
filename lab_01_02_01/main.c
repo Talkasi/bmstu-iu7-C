@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#define PI acos(-1)
+#define PI acos(-1.0)
 
 int main(void)
 {
