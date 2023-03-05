@@ -5,7 +5,9 @@
 - double s: **_area of the trapezoid_**;
 ## Positive tests
 - First base is bigger than the second;
-- First base is lower than the second.
+- First base is bigger than the second, values are different from the previous test;
+- First base is lower than the second;
+- First base is lower than the second, values are different from the previous test.
 ## Negative tests
 - The trapezoid doesn't exist;
 - The angle is lower than zero;
