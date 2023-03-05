@@ -1,12 +1,12 @@
 #include <math.h>
 #include <stdio.h>
 
-double s_computation(double x, double eps);
+double s(double x, double eps);
 
 int main(void)
 {
     double x, eps;
-    double f, s;
+    double f, s_val;
     double absolute_error, relative_error;
 
     printf("Enter x: ");
@@ -24,17 +24,17 @@ int main(void)
     }
 
     f = 1.0 / (1.0 + x) / (1.0 + x) / (1.0 + x);
-    s = s_computation(x, eps);
+    s_val = s(x, eps);
 
-    absolute_error = fabs(f - s);
-    relative_error = fabs(f - s) / fabs(f);
+    absolute_error = fabs(f - s_val);
+    relative_error = fabs(f - s_val) / fabs(f);
 
-    printf("S(x): %.6lf\nF(x): %.6lf\n", s, f);
+    printf("S(x): %.6lf\nF(x): %.6lf\n", s_val, f);
     printf("Absolute error: %.6lf\nRelative error: %.6lf\n", absolute_error, relative_error);
     return 0;
 }
 
-double s_computation(double x, double eps)
+double s(double x, double eps)
 {
     double elem = 1.0;
     double s = 1.0;
