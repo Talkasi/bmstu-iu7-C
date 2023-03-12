@@ -49,7 +49,7 @@ int main(void)
 
 int is_prime(long number)
 {
-    if (number == 1)
+    if (number <= 0 || number == 1)
         return 0;
 
     if (number == 2)
