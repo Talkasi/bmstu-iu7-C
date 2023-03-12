@@ -9,6 +9,7 @@
 - There are ten elements in the given array, and all of them are prime;
 - There are several elements in the given array, and some of them are prime;
 - Big numbers.
+- There are negative numbers and `0` in the given array.
 ## Negative tests
 - Number of elements of the given array is negative;
 - Number of elements of the given array is bigger than 10;
