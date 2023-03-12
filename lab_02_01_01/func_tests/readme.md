@@ -10,6 +10,7 @@
 - There is one element in an array, and it is odd;
 - There are ten elements in an array, and all of them are odd;
 - Big numbers;
+- There are negative numbers in the given array.
 ## Negative tests
 - Number of elements of an array is negative;
 - Number of elements of an array is bigger than 10;
