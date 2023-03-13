@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 #define NMAX 10
-#define ERROR -1
+#define ERROR_CODE -1
+#define OVERFLOW_CODE 100
 
 int read_array(int *arr);
 void print_array(int *arr, int arr_len);
@@ -13,15 +14,15 @@ int main(void)
     int arr_len, ret_code = 0;
 
     printf("Enter elements of an array:\n");
-    if ((arr_len = read_array(arr)) == ERROR)
+    if ((arr_len = read_array(arr)) == ERROR_CODE)
     {
         printf("Input error.");
         return 1;
     }
 
-    if (arr_len == 100)
+    if (arr_len == OVERFLOW_CODE)
     {
-        ret_code = 100;
+        ret_code = OVERFLOW_CODE;
         arr_len = 10;
     }
 
@@ -52,12 +53,12 @@ int read_array(int *arr)
     while (scanf("%d", &temp) == 1)
     {
         if (i >= NMAX)
-            return 100;
+            return OVERFLOW_CODE;
         arr[i++] = temp;
     }
 
     if (i == 0)
-        return ERROR;
+        return ERROR_CODE;
 
     return i;
 }

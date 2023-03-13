@@ -5,8 +5,18 @@ if [ -z "$1" ] ; then
   exit 1
 fi
 
+file="$(mktemp)"
+./app.exe < "$1" > "$file"
+
 if ./app.exe < "$1" > /dev/null; then
   exit 1
 else
-  exit 0
+  if func_tests/scripts/comparator.sh "$file" "$2"; then
+    rm "$file"
+    exit 0
+  else
+    rm "$file"
+    exit 1
+  fi
 fi
+
