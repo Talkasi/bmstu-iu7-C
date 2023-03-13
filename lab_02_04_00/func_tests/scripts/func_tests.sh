@@ -33,12 +33,15 @@ for in_file in func_tests/data/neg_*_in.txt; do
     break
   fi
 
-  if func_tests/scripts/neg_case.sh "$in_file"; then
+  out_file="func_tests/data/neg_""$test_number""_out.txt"
+
+  if func_tests/scripts/neg_case.sh "$in_file" "$out_file"; then
     echo -e "Test ""$test_number"": ${GREEN}PASSED${NC}"
   else
     n_failed=$((n_failed + 1))
     echo -e "Test ""$test_number"": ${RED}FAILED${NC}"
   fi
+
 done
 
 if [ "$n_failed" -ne "0" ]; then
