@@ -2,7 +2,7 @@
 
 #define NMAX 10
 
-int array_initialization(int arr[], int arr_len);
+int read_array(int arr[], int arr_len);
 int odd_product(int arr[], int arr_len);
 
 int main(void)
@@ -17,7 +17,7 @@ int main(void)
         return 1;
     }
 
-    if (array_initialization(arr, arr_len))
+    if (read_array(arr, arr_len))
     {
         printf("Input error.");
         return 1;
@@ -34,7 +34,7 @@ int main(void)
     return 0;
 }
 
-int array_initialization(int *arr, int arr_len)
+int read_array(int *arr, int arr_len)
 {
     for (int i = 0; i < arr_len; ++i)
     {
