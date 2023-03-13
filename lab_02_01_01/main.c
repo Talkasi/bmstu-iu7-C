@@ -2,30 +2,56 @@
 
 #define NMAX 10
 
+int array_initialization(int arr[], int arr_len);
+int odd_product(int arr[], int arr_len);
+
 int main(void)
 {
-    long arr[NMAX];
-    int n, n_odd = 0;
-    long long p = 1;
+    int arr[NMAX];
+    int arr_len;
 
     printf("Enter number of elements in the array: ");
-    if (scanf("%d", &n) != 1 || n <= 0 || n > 10)
+    if (scanf("%d", &arr_len) != 1 || arr_len <= 0 || arr_len > 10)
     {
         printf("Input error.");
         return 1;
     }
 
-    for (int i = 0; i < n; ++i)
+    if (array_initialization(arr, arr_len))
     {
-        printf("Enter element of an array: ");
-        if (scanf("%ld", &arr[i]) != 1)
-        {
-            printf("Input error.");
-            return 1;
-        }
+        printf("Input error.");
+        return 1;
     }
 
-    for (int i = 0; i < n; ++i)
+    int p = odd_product(arr, arr_len);
+    if (p == 0)
+    {
+        printf("There aren't odd elements in an array.");
+        return 1;
+    }
+
+    printf("The product of odd array elements is: %d", p);
+    return 0;
+}
+
+int array_initialization(int *arr, int arr_len)
+{
+    for (int i = 0; i < arr_len; ++i)
+    {
+        printf("Enter element of an array: ");
+        if (scanf("%d", &arr[i]) != 1)
+            return 1;
+    }
+
+    return 0;
+}
+
+int odd_product(int arr[], int arr_len)
+{
+    int p = 1;
+    int n_odd = 0;
+
+    for (int i = 0; i < arr_len; ++i)
     {
         if (arr[i] % 2 != 0)
         {
@@ -34,14 +60,8 @@ int main(void)
         }
     }
 
-    if (n_odd > 0)
-    {
-        printf("The product of odd array elements is: %lld", p);
+    if (n_odd == 0)
         return 0;
-    }
-    else
-    {
-        printf("There aren't odd elements in an array.");
-        return 1;
-    }
+
+    return p;
 }
