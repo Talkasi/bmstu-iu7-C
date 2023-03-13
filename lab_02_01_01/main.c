@@ -11,7 +11,7 @@ int main(void)
     int arr_len;
 
     printf("Enter number of elements in the array: ");
-    if (scanf("%d", &arr_len) != 1 || arr_len <= 0 || arr_len > 10)
+    if (scanf("%d", &arr_len) != 1 || arr_len <= 0 || arr_len > NMAX)
     {
         printf("Input error.");
         return 1;

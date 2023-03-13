@@ -6,6 +6,7 @@
 int is_prime(int number);
 int read_array(int *arr, int arr_len);
 int prime_copy(int *dst, int *src, int src_len);
+void print_new_array(int *arr, int arr_len);
 
 int main(void)
 {
@@ -33,9 +34,7 @@ int main(void)
         return 1;
     }
 
-    printf("Elements of the new array:");
-    for (int i = 0; i < cp_arr_len; ++i)
-        printf(" %d", cp_arr[i]);
+    print_new_array(cp_arr, cp_arr_len);
 
     return 0;
 }
@@ -78,4 +77,11 @@ int prime_copy(int *dst, int *src, int src_len)
             dst[dst_len++] = src[i];
 
     return dst_len;
+}
+
+void print_new_array(int *arr, int arr_len)
+{
+    printf("Elements of the new array:");
+    for (int i = 0; i < arr_len; ++i)
+        printf(" %d", arr[i]);
 }
