@@ -31,7 +31,7 @@ int main(void)
 
     bubble_sort(arr, arr_len);
 
-    printf("Elements of the new array: ");
+    printf("Elements of the new array:\n");
     arr_print(arr, arr_len);
 
     return ret_code;

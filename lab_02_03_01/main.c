@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include <stdint.h>
 
 #define N_MAX 10
+/* Index of the max fibonacci number in int32_t */
+#define FIB_MAX 42
 
 #define INPUT_LEN_ERROR 1
 #define INPUT_ARRAY_ERROR 2
@@ -9,6 +10,7 @@
 int arr_read(int arr[], size_t arr_len);
 void arr_print(int arr[], size_t arr_len);
 
+void arr_fibs_compute(int fib_numbers[], size_t n_insert);
 size_t arr_fibs_insertion(int arr[], size_t arr_len);
 size_t arr_div_by_three_count(int arr[], size_t arr_len);
 
@@ -24,6 +26,7 @@ int main(void)
         return INPUT_LEN_ERROR;
     }
 
+    printf("Enter elements of an array:\n");
     if (arr_read(arr, arr_len))
     {
         printf("Input array error.\n");
@@ -32,7 +35,7 @@ int main(void)
 
     arr_len = arr_fibs_insertion(arr, arr_len);
 
-    printf("New array:\n");
+    printf("Elements of the new array:\n");
     arr_print(arr, arr_len);
 
     return 0;
@@ -55,11 +58,8 @@ void arr_print(int arr[], size_t arr_len)
 
 size_t arr_fibs_insertion(int arr[], size_t arr_len)
 {
-    int32_t fibs_arr[] = {0,        1,        1,        2,        3,         5,         8,         13,       21,
-                          34,       55,       89,       144,      233,       377,       610,       987,      1597,
-                          2584,     4181,     6765,     10946,    17711,     28657,     46368,     75025,    121393,
-                          196418,   317811,   514229,   832040,   1346269,   2178309,   3524578,   5702887,  9227465,
-                          14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437};
+    int fibs_arr[FIB_MAX];
+    arr_fibs_compute(fibs_arr, FIB_MAX);
 
     size_t n_insert = arr_div_by_three_count(arr, arr_len);
 
@@ -81,6 +81,18 @@ size_t arr_fibs_insertion(int arr[], size_t arr_len)
     }
 
     return arr_len + n_insert;
+}
+
+void arr_fibs_compute(int fib_numbers[], size_t n_insert)
+{
+    if (n_insert >= 1)
+        fib_numbers[0] = 0;
+
+    if (n_insert >= 2)
+        fib_numbers[1] = 1;
+
+    for (size_t i = 2; i < n_insert; ++i)
+        fib_numbers[i] = fib_numbers[i - 1] + fib_numbers[i - 2];
 }
 
 size_t arr_div_by_three_count(int arr[], size_t arr_len)
