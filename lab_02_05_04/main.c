@@ -1,65 +1,67 @@
 #include <stdio.h>
 
-#define NMAX 10
+#define N_MAX 10
 
-int read_array(int *arr_first, int *arr_past_last);
-int count_uniq(int *arr_first, int *arr_past_last);
-int check_presence(int *arr_first, int *arr_past_last);
+#define INPUT_LEN_ERROR 1
+#define INPUT_ARRAY_ERROR 2
+
+int arr_read(int *arr_first, int *arr_past_last);
+size_t uniq_count(int *arr_first, int *arr_past_last);
+int presence_check(int *arr_first, int *arr_cur_check);
 
 int main(void)
 {
-    int a[NMAX];
-    int *arr = a;
-    int arr_len;
+    int arr[N_MAX];
+    size_t arr_len;
 
     printf("Enter number of elements in the array: ");
-    if (scanf("%d", &arr_len) != 1 || arr_len <= 0 || arr_len > NMAX)
+    if (scanf("%zu", &arr_len) != 1 || arr_len == 0 || arr_len > N_MAX)
     {
-        printf("Input error.");
-        return 1;
+        printf("Input length error.\n");
+        return INPUT_LEN_ERROR;
     }
 
     printf("Enter elements of an array:\n");
-    if (read_array(arr, arr + arr_len))
+    if (arr_read(arr, arr + arr_len))
     {
-        printf("Input error.");
-        return 1;
+        printf("Input array error.\n");
+        return INPUT_ARRAY_ERROR;
     }
 
-    printf("There are %d uniq elements in the array.\n", count_uniq(arr, arr + arr_len));
+    printf("There are %zu uniq elements in the array.\n", uniq_count(arr, arr + arr_len));
 
     return 0;
 }
 
-int read_array(int *arr_first, int *arr_past_last)
+int arr_read(int *arr_first, int *arr_past_last)
 {
     int *arr_cur = arr_first;
     while (arr_cur < arr_past_last)
     {
         if (scanf("%d", arr_cur) != 1)
-            return 1;
+            return INPUT_ARRAY_ERROR;
 
-        arr_cur++;
+        ++arr_cur;
     }
 
     return 0;
 }
 
-int count_uniq(int *arr_first, int *arr_past_last)
+size_t uniq_count(int *arr_first, int *arr_past_last)
 {
-    int n_uniq = 0;
+    size_t n_uniq = 0;
 
     for (int *arr_cur = arr_first; arr_cur < arr_past_last; ++arr_cur)
-        if (!check_presence(arr_first, arr_cur))
+        if (!presence_check(arr_first, arr_cur))
             ++n_uniq;
 
     return n_uniq;
 }
 
-int check_presence(int *arr_first, int *arr_past_last)
+int presence_check(int *arr_first, int *arr_cur_check)
 {
-    for (int *arr_cur = arr_first; arr_cur < arr_past_last; ++arr_cur)
-        if (*arr_cur == *arr_past_last)
+    for (int *arr_cur = arr_first; arr_cur < arr_cur_check; ++arr_cur)
+        if (*arr_cur == *arr_cur_check)
             return 1;
 
     return 0;
