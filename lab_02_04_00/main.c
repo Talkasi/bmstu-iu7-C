@@ -1,71 +1,71 @@
 #include <stdio.h>
 
-#define NMAX 10
-#define ERROR_CODE -1
-#define OVERFLOW_CODE 100
+#define N_MAX 10
 
-int read_array(int *arr);
-void print_array(int *arr, int arr_len);
-void bubble_sort(int *arr, int arr_len);
+#define INPUT_ARRAY_ERROR 2
+#define OVERFLOW_ERROR 100
+
+size_t arr_read(int arr[], size_t n_max);
+void arr_print(int arr[], size_t arr_len);
+
+void bubble_sort(int arr[], size_t arr_len);
 
 int main(void)
 {
-    int arr[NMAX];
-    int arr_len, ret_code = 0;
+    int arr[N_MAX];
+    size_t arr_len;
+    int ret_code = 0;
 
     printf("Enter elements of an array:\n");
-    if ((arr_len = read_array(arr)) == ERROR_CODE)
+    if ((arr_len = arr_read(arr, N_MAX)) == 0)
     {
-        printf("Input error.");
-        return 1;
+        printf("Input length error.\n");
+        return INPUT_ARRAY_ERROR;
     }
 
-    if (arr_len == OVERFLOW_CODE)
+    if (arr_len == OVERFLOW_ERROR)
     {
-        ret_code = OVERFLOW_CODE;
-        arr_len = 10;
+        ret_code = OVERFLOW_ERROR;
+        arr_len = N_MAX;
     }
 
     bubble_sort(arr, arr_len);
-    print_array(arr, arr_len);
+
+    printf("Elements of the new array: ");
+    arr_print(arr, arr_len);
 
     return ret_code;
 }
 
-void bubble_sort(int *arr, int arr_len)
+void bubble_sort(int arr[], size_t arr_len)
 {
-    int temp;
-
-    for (int i = 0; i < arr_len; ++i)
-        for (int j = 0; j < i; ++j)
+    for (size_t i = 0; i < arr_len; ++i)
+        for (size_t j = 0; j < i; ++j)
             if (arr[i] < arr[j])
             {
-                temp = arr[i];
+                int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
 }
 
-int read_array(int *arr)
+size_t arr_read(int arr[], size_t n_max)
 {
-    int i = 0, temp;
+    size_t i = 0;
+    int temp;
 
     while (scanf("%d", &temp) == 1)
     {
-        if (i >= NMAX)
-            return OVERFLOW_CODE;
+        if (i >= n_max)
+            return OVERFLOW_ERROR;
         arr[i++] = temp;
     }
-
-    if (i == 0)
-        return ERROR_CODE;
 
     return i;
 }
 
-void print_array(int *arr, int arr_len)
+void arr_print(int arr[], size_t arr_len)
 {
-    printf("Elements of the array:");
-    for (int i = 0; i < arr_len; ++i)
-        printf(" %d", arr[i]);
+    for (size_t i = 0; i < arr_len; ++i)
+        printf("%d ", arr[i]);
 }

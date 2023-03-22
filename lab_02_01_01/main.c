@@ -1,67 +1,67 @@
 #include <stdio.h>
 
-#define NMAX 10
+#define N_MAX 10
 
-int read_array(int arr[], int arr_len);
-int odd_product(int arr[], int arr_len);
+#define INPUT_LEN_ERROR 1
+#define INPUT_ARRAY_ERROR 2
+#define NO_ODDS_ERROR 3
+
+int arr_read(int arr[], size_t arr_len);
+int product_of_odds(int arr[], size_t arr_len);
 
 int main(void)
 {
-    int arr[NMAX];
-    int arr_len;
+    int arr[N_MAX];
+    size_t arr_len;
 
     printf("Enter number of elements in the array: ");
-    if (scanf("%d", &arr_len) != 1 || arr_len <= 0 || arr_len > NMAX)
+    if (scanf("%zu", &arr_len) != 1 || arr_len == 0 || arr_len > N_MAX)
     {
-        printf("Input error.");
-        return 1;
+        printf("Input length error.\n");
+        return INPUT_LEN_ERROR;
     }
 
-    if (read_array(arr, arr_len))
+    printf("Enter elements of an array: ");
+    if (arr_read(arr, arr_len))
     {
-        printf("Input error.");
-        return 1;
+        printf("Input array error.\n");
+        return INPUT_ARRAY_ERROR;
     }
 
-    int p = odd_product(arr, arr_len);
-    if (p == 0)
+    int product = product_of_odds(arr, arr_len);
+    if (product == 0)
     {
-        printf("There aren't odd elements in an array.");
-        return 1;
+        printf("Error: there are no odd elements in the given array.\n");
+        return NO_ODDS_ERROR;
     }
 
-    printf("The product of odd array elements is: %d", p);
+    printf("The product of odd array elements is: %d\n", product);
     return 0;
 }
 
-int read_array(int *arr, int arr_len)
+int arr_read(int arr[], size_t arr_len)
 {
-    for (int i = 0; i < arr_len; ++i)
-    {
-        printf("Enter element of an array: ");
+    for (size_t i = 0; i < arr_len; ++i)
         if (scanf("%d", &arr[i]) != 1)
-            return 1;
-    }
+            return INPUT_ARRAY_ERROR;
 
     return 0;
 }
 
-int odd_product(int arr[], int arr_len)
+int product_of_odds(int arr[], size_t arr_len)
 {
-    int p = 1;
-    int n_odd = 0;
+    int product = 1;
+    int n_odds = 0;
 
-    for (int i = 0; i < arr_len; ++i)
-    {
+    for (size_t i = 0; i < arr_len; ++i)
         if (arr[i] % 2 != 0)
         {
-            ++n_odd;
-            p *= arr[i];
+            ++n_odds;
+            product *= arr[i];
         }
-    }
 
-    if (n_odd == 0)
+    if (n_odds == 0)
         return 0;
 
-    return p;
+    return product;
 }
