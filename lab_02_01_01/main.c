@@ -21,7 +21,7 @@ int main(void)
         return INPUT_LEN_ERROR;
     }
 
-    printf("Enter elements of an array: ");
+    printf("Enter elements of an array:\n");
     if (arr_read(arr, arr_len))
     {
         printf("Input array error.\n");
