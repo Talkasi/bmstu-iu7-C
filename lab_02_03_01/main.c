@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 #define N_MAX 10
-/* Index of the max fibonacci number in int32_t */
-#define FIB_MAX 42
+/* The maximum number of Fibonacci numbers that can be stored in int32_t */
+#define FIB_MAX 43
 
 #define INPUT_LEN_ERROR 1
 #define INPUT_ARRAY_ERROR 2
