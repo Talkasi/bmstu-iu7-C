@@ -8,7 +8,7 @@
 - There is one element in the given array, and it is prime;
 - There are ten elements in the given array, and all of them are prime;
 - There are several elements in the given array, and some of them are prime;
-- Big numbers.
+- There is prime number which is close to INT_MAX;
 - There are negative numbers and `0` in the given array.
 ## Negative tests
 - Number of elements of the given array is negative;
