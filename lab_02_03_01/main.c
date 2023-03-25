@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 #define N_MAX 10
-/* The maximum number of Fibonacci numbers that can be stored in int32_t */
-#define FIB_MAX 43
+/* The maximum quantity of Fibonacci numbers which are lower than standard INT_MAX */
+#define FIB_MAX 24
 
 #define INPUT_LEN_ERROR 1
 #define INPUT_ARRAY_ERROR 2
@@ -10,7 +10,7 @@
 int arr_read(int arr[], size_t arr_len);
 void arr_print(int arr[], size_t arr_len);
 
-void arr_fibs_compute(int fib_numbers[], size_t n_insert);
+void arr_fibs_init(int fib_numbers[], size_t fib_len);
 size_t arr_fibs_insertion(int arr[], size_t arr_len);
 size_t arr_div_by_three_count(int arr[], size_t arr_len);
 
@@ -59,7 +59,7 @@ void arr_print(int arr[], size_t arr_len)
 size_t arr_fibs_insertion(int arr[], size_t arr_len)
 {
     int fibs_arr[FIB_MAX];
-    arr_fibs_compute(fibs_arr, FIB_MAX);
+    arr_fibs_init(fibs_arr, FIB_MAX);
 
     size_t n_insert = arr_div_by_three_count(arr, arr_len);
 
@@ -83,15 +83,15 @@ size_t arr_fibs_insertion(int arr[], size_t arr_len)
     return arr_len + n_insert;
 }
 
-void arr_fibs_compute(int fib_numbers[], size_t n_insert)
+void arr_fibs_init(int fib_numbers[], size_t fib_len)
 {
-    if (n_insert >= 1)
+    if (fib_len >= 1)
         fib_numbers[0] = 0;
 
-    if (n_insert >= 2)
+    if (fib_len >= 2)
         fib_numbers[1] = 1;
 
-    for (size_t i = 2; i < n_insert; ++i)
+    for (size_t i = 2; i < fib_len; ++i)
         fib_numbers[i] = fib_numbers[i - 1] + fib_numbers[i - 2];
 }
 
