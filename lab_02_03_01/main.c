@@ -10,8 +10,8 @@
 int arr_read(int arr[], size_t arr_len);
 void arr_print(int arr[], size_t arr_len);
 
-void arr_fibs_init(int fib_numbers[], size_t fib_len);
-size_t arr_fibs_insertion(int arr[], size_t arr_len);
+void fibs_init(int fib_numbers[], size_t fib_len);
+size_t fibs_insertion(int arr[], size_t arr_len);
 size_t arr_div_by_three_count(int arr[], size_t arr_len);
 
 int main(void)
@@ -19,7 +19,7 @@ int main(void)
     int arr[N_MAX * 2];
     size_t arr_len;
 
-    printf("Enter number of elements in the array: ");
+    printf("Enter number of elements in an array: ");
     if (scanf("%zu", &arr_len) != 1 || arr_len == 0 || arr_len > N_MAX)
     {
         printf("Input length error.\n");
@@ -33,7 +33,7 @@ int main(void)
         return INPUT_ARRAY_ERROR;
     }
 
-    arr_len = arr_fibs_insertion(arr, arr_len);
+    arr_len = fibs_insertion(arr, arr_len);
 
     printf("Elements of the new array:\n");
     arr_print(arr, arr_len);
@@ -45,7 +45,7 @@ int arr_read(int arr[], size_t arr_len)
 {
     for (size_t i = 0; i < arr_len; ++i)
         if (scanf("%d", &arr[i]) != 1)
-            return INPUT_ARRAY_ERROR;
+            return 1;
 
     return 0;
 }
@@ -56,10 +56,10 @@ void arr_print(int arr[], size_t arr_len)
         printf("%d ", arr[i]);
 }
 
-size_t arr_fibs_insertion(int arr[], size_t arr_len)
+size_t fibs_insertion(int arr[], size_t arr_len)
 {
     int fibs_arr[FIB_MAX];
-    arr_fibs_init(fibs_arr, FIB_MAX);
+    fibs_init(fibs_arr, FIB_MAX);
 
     size_t n_insert = arr_div_by_three_count(arr, arr_len);
 
@@ -83,7 +83,7 @@ size_t arr_fibs_insertion(int arr[], size_t arr_len)
     return arr_len + n_insert;
 }
 
-void arr_fibs_init(int fib_numbers[], size_t fib_len)
+void fibs_init(int fib_numbers[], size_t fib_len)
 {
     if (fib_len >= 1)
         fib_numbers[0] = 0;
