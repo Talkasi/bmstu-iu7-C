@@ -7,14 +7,14 @@
 
 int arr_read(int *arr_first, int *arr_past_last);
 size_t uniq_count(int *arr_first, int *arr_past_last);
-int presence_check(int *arr_first, int *arr_cur_check);
+int presence_check(int *arr_first, int *arr_check);
 
 int main(void)
 {
     int arr[N_MAX];
     size_t arr_len;
 
-    printf("Enter number of elements in the array: ");
+    printf("Enter number of elements in an array: ");
     if (scanf("%zu", &arr_len) != 1 || arr_len == 0 || arr_len > N_MAX)
     {
         printf("Input length error.\n");
@@ -35,14 +35,9 @@ int main(void)
 
 int arr_read(int *arr_first, int *arr_past_last)
 {
-    int *arr_cur = arr_first;
-    while (arr_cur < arr_past_last)
-    {
+    for (int *arr_cur = arr_first; arr_cur < arr_past_last; ++arr_cur)
         if (scanf("%d", arr_cur) != 1)
-            return INPUT_ARRAY_ERROR;
-
-        ++arr_cur;
-    }
+            return 1;
 
     return 0;
 }
@@ -58,10 +53,10 @@ size_t uniq_count(int *arr_first, int *arr_past_last)
     return n_uniq;
 }
 
-int presence_check(int *arr_first, int *arr_cur_check)
+int presence_check(int *arr_first, int *arr_check)
 {
-    for (int *arr_cur = arr_first; arr_cur < arr_cur_check; ++arr_cur)
-        if (*arr_cur == *arr_cur_check)
+    for (int *arr_cur = arr_first; arr_cur < arr_check; ++arr_cur)
+        if (*arr_cur == *arr_check)
             return 1;
 
     return 0;

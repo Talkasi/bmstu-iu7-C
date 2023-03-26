@@ -14,7 +14,7 @@ int main(void)
     int arr[N_MAX];
     size_t arr_len;
 
-    printf("Enter number of elements in the array: ");
+    printf("Enter number of elements in an array: ");
     if (scanf("%zu", &arr_len) != 1 || arr_len == 0 || arr_len > N_MAX)
     {
         printf("Input length error.\n");
@@ -43,7 +43,7 @@ int arr_read(int arr[], size_t arr_len)
 {
     for (size_t i = 0; i < arr_len; ++i)
         if (scanf("%d", &arr[i]) != 1)
-            return INPUT_ARRAY_ERROR;
+            return 1;
 
     return 0;
 }
