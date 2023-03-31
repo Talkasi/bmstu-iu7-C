@@ -32,11 +32,10 @@ int main(void)
         return INPUT_MATRIX_ERROR;
     }
 
-    size_t min_el_row;
-    size_t min_el_column;
+    size_t indexes[N_INDEXES];
 
-    indexes_of_digits_min_elem(&min_el_row, &min_el_column, matrix, n_rows, n_columns);
-    row_and_column_delete(matrix, &n_rows, &n_columns, min_el_row, min_el_column);
+    min_digits_sum_indexes(indexes, matrix, n_rows, n_columns);
+    row_column_delete(matrix, &n_rows, &n_columns, indexes);
 
     printf("New matrix is:\n");
     matrix_print(matrix, n_rows, n_columns);

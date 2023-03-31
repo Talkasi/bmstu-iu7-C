@@ -22,12 +22,11 @@ void matrix_print(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_column
     }
 }
 
-void indexes_of_digits_min_elem(size_t *min_el_row, size_t *min_el_column, matrix_t matrix[N_COLUMNS_MAX],
-                                size_t n_rows, size_t n_columns)
+void min_digits_sum_indexes(size_t indexes[N_INDEXES], matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
 {
     int min_digits_sum = digits_sum(abs(matrix[0][0]));
-    *min_el_row = 0;
-    *min_el_column = 0;
+    indexes[0] = 0;
+    indexes[1] = 0;
 
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
@@ -36,8 +35,8 @@ void indexes_of_digits_min_elem(size_t *min_el_row, size_t *min_el_column, matri
             if (digits_sum_cur < min_digits_sum)
             {
                 min_digits_sum = digits_sum_cur;
-                *min_el_row = i;
-                *min_el_column = j;
+                indexes[0] = i;
+                indexes[1] = j;
             }
         }
 }
@@ -55,17 +54,16 @@ int digits_sum(int num)
     return sum;
 }
 
-void row_and_column_delete(matrix_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns, size_t min_el_row,
-                           size_t min_el_column)
+void row_column_delete(matrix_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns, size_t indexes[N_INDEXES])
 {
     for (size_t i = 0; i < *n_rows; ++i)
-        elem_delete(matrix[i], *n_columns, min_el_column);
+        elem_delete(matrix[i], *n_columns, indexes[1]);
 
     --*n_columns;
     matrix_transpose(matrix, n_rows, n_columns);
 
     for (size_t i = 0; i < *n_rows; ++i)
-        elem_delete(matrix[i], *n_columns, min_el_row);
+        elem_delete(matrix[i], *n_columns, indexes[0]);
 
     --*n_columns;
     matrix_transpose(matrix, n_rows, n_columns);
