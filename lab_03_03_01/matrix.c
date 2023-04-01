@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int matrix_read(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+int matrix_read(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
@@ -11,7 +11,7 @@ int matrix_read(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     return 0;
 }
 
-void matrix_print(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
     {
@@ -22,7 +22,7 @@ void matrix_print(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_column
     }
 }
 
-size_t max_index(int arr[], size_t arr_len)
+size_t max_index_init(int arr[], size_t arr_len)
 {
     size_t max_i = 0;
     int max = arr[max_i];
@@ -37,13 +37,13 @@ size_t max_index(int arr[], size_t arr_len)
     return max_i;
 }
 
-void max_indexes_arr(size_t max_indexes[], matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void max_indexes_arr(size_t max_indexes[], arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
-        max_indexes[i] = max_index(matrix[i], n_columns);
+        max_indexes[i] = max_index_init(matrix[i], n_columns);
 }
 
-void insertion_sort(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns, size_t indexes[N_COLUMNS_MAX])
+void insertion_sort(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns, size_t indexes[N_COLUMNS_MAX])
 {
     for (size_t i = 0; i < n_rows - 1; ++i)
     {
