@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gcc -c main.c -Werror -Wall -Wpedantic -Wextra -Wfloat-equal -std=c99
-gcc main.o -o app.exe -lm
+gcc -c ./*.c -Werror -Wall -Wpedantic -Wextra -Wfloat-equal -std=c99
+gcc ./*.o -o app.exe -lm

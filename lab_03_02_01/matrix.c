@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int matrix_read(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+int matrix_read(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
@@ -11,7 +11,7 @@ int matrix_read(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     return 0;
 }
 
-void matrix_print(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
     {
@@ -22,7 +22,7 @@ void matrix_print(matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_column
     }
 }
 
-void min_digits_sum_indexes(size_t indexes[N_INDEXES], matrix_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void min_digits_sum_indexes(size_t indexes[N_INDEXES], arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
 {
     int min_digits_sum = digits_sum(abs(matrix[0][0]));
     indexes[0] = 0;
@@ -54,7 +54,7 @@ int digits_sum(int num)
     return sum;
 }
 
-void row_column_delete(matrix_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns, size_t indexes[N_INDEXES])
+void row_column_delete(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns, size_t indexes[N_INDEXES])
 {
     for (size_t i = 0; i < *n_rows; ++i)
         elem_delete(matrix[i], *n_columns, indexes[1]);
@@ -75,7 +75,7 @@ void elem_delete(int arr[], size_t arr_len, size_t position_to_delete)
         arr[i] = arr[i + 1];
 }
 
-void matrix_transpose(matrix_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns)
+void matrix_transpose(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns)
 {
     size_t n_sq = MAX(*n_rows, *n_columns);
 
