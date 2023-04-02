@@ -14,4 +14,5 @@
 ## Negative tests
 - Invalid number of rows, columns;
 - Wrong matrix element;
+- Matrix is not square;
 - File is empty.
