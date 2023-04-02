@@ -7,7 +7,6 @@
 
 #define N_INDEXES 2
 
-#define MAX(a, b) (a) > (b) ? (a) : (b)
 typedef int arr_t[N_ROWS_MAX];
 
 int matrix_read(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns);
@@ -20,5 +19,7 @@ void min_digits_sum_indexes(size_t indexes[N_INDEXES], arr_t matrix[N_COLUMNS_MA
 
 void elem_delete(int arr[], size_t arr_len, size_t position_to_delete);
 void row_column_delete(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns, size_t indexes[N_INDEXES]);
+
+size_t max(size_t a, size_t b);
 
 #endif

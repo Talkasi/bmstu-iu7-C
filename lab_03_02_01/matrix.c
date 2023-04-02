@@ -77,7 +77,7 @@ void elem_delete(int arr[], size_t arr_len, size_t position_to_delete)
 
 void matrix_transpose(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns)
 {
-    size_t n_sq = MAX(*n_rows, *n_columns);
+    size_t n_sq = max(*n_rows, *n_columns);
 
     for (size_t i = 0; i < n_sq; ++i)
         for (size_t j = i; j < n_sq; ++j)
@@ -90,4 +90,12 @@ void matrix_transpose(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_col
     int temp = *n_columns;
     *n_columns = *n_rows;
     *n_rows = temp;
+}
+
+size_t max(size_t a, size_t b)
+{
+    if (a > b)
+        return a;
+
+    return b;
 }
