@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -f ./*.o ./*.exe ./*.gcov ./*.gcda ./*.gcno
+rm -f ./*.o ./*.exe ./*.gcov ./*.gcda ./*.gcno ./*.out

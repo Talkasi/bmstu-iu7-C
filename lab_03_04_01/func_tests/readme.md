@@ -1,6 +1,7 @@
-# Lab_03_01_01 tests
+# Lab_03_04_01 tests
 ## Input data
-- Number of rows, columns in a matrix;
+- Number of rows in a matrix;
+- Number of columns in a matrix;
 - Elements of a matrix, line by line.
 ## Output data
 - Matrix with specially swapped rows.
