@@ -26,7 +26,8 @@ int main(void)
         return INPUT_N_COLUMNS_ERROR;
     }
 
-    if (n_columns != n_rows) {
+    if (n_columns != n_rows)
+    {
         printf("Not square matrix error.\n");
         return NOT_SQUARE_MATRIX_ERROR;
     }

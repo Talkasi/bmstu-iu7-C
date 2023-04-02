@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcov -r ./*.c
+gcov -r main.c matrix.c

@@ -1,4 +1,4 @@
-# Lab_03_01_01 tests
+# Lab_03_03_01 tests
 ## Input data
 - Number of rows in a matrix;
 - Number of columns in a matrix;
