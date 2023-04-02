@@ -1,4 +1,4 @@
-# Lab_03_01_01 tests
+# Lab_03_05_01 tests
 ## Input data
 - Number of rows in a matrix;
 - Number of columns in a matrix;
@@ -10,7 +10,9 @@
 - One row, `5` columns, there are elements with sum of digits greater than `10`;
 - `4` rows, `4` columns, all elements are equal;
 - `10` rows, `10` columns;
-- All elements of matrix have sum of digits greater than `10`.
+- All elements of matrix have sum of digits greater than `10`;
+- `4` rows, `3` columns, there are elements with sum of digits greater than `10`;
+- There are two elements with sum of digits greater than `10`.
 ## Negative tests
 - Invalid number of rows;
 - Invalid number of columns;
