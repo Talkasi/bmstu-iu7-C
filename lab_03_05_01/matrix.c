@@ -36,17 +36,15 @@ size_t arr_by_digits_sum_init(int arr[], arr_t matrix[N_COLUMNS_MAX], size_t n_r
 
 void cyclic_left_shift(int arr[], size_t arr_len, size_t n_shift)
 {
-    int temp[N_ROWS_MAX * N_COLUMNS_MAX];
-    int i_temp = 0;
+    for (size_t k = 0; k < n_shift; ++k)
+    {
+        int temp = arr[0];
 
-    for (size_t i = 0; i < n_shift; ++i)
-        temp[i] = arr[i];
+        for (size_t i = 1; i < arr_len; ++i)
+            arr[i - 1] = arr[i];
 
-    for (size_t i = n_shift; i < arr_len; ++i)
-        arr[i - n_shift] = arr[i];
-
-    for (size_t i = arr_len - n_shift; i < arr_len; ++i)
-        arr[i] = temp[i_temp++];
+        arr[arr_len - 1] = temp;
+    }
 }
 
 int digits_sum(int num)
