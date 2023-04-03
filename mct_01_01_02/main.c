@@ -30,7 +30,7 @@ int main(void)
     double sum = my_sum(x, eps);
 
     printf("Sum: %e\n", sum);
-    printf("F(x): %+.5e\n", cos(asin(x)));
+    printf("F(x): %+.5lf\n", cos(asin(x)));
 
     return 0;
 }
@@ -38,7 +38,7 @@ int main(void)
 double my_sum(double x, double eps)
 {
     int i = 3;
-    double a_j = 1.0;
+    double a_j = -1.0;
     double sum = 0.0;
 
     while (fabs(a_j) < eps)
