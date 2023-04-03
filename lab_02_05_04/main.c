@@ -5,7 +5,7 @@
 #define INPUT_LEN_ERROR 1
 #define INPUT_ARRAY_ERROR 2
 
-int arr_read(int *arr_first, int *arr_past_last);
+int arr_scan(int *arr_first, int *arr_past_last);
 size_t uniq_count(int *arr_first, int *arr_past_last);
 int presence_check(int *arr_first, int *arr_check);
 
@@ -22,7 +22,7 @@ int main(void)
     }
 
     printf("Enter elements of an array:\n");
-    if (arr_read(arr, arr + arr_len))
+    if (arr_scan(arr, arr + arr_len))
     {
         printf("Input array error.\n");
         return INPUT_ARRAY_ERROR;
@@ -33,7 +33,7 @@ int main(void)
     return 0;
 }
 
-int arr_read(int *arr_first, int *arr_past_last)
+int arr_scan(int *arr_first, int *arr_past_last)
 {
     for (int *arr_cur = arr_first; arr_cur < arr_past_last; ++arr_cur)
         if (scanf("%d", arr_cur) != 1)

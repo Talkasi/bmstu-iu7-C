@@ -7,7 +7,7 @@
 #define INPUT_LEN_ERROR 1
 #define INPUT_ARRAY_ERROR 2
 
-int arr_read(int arr[], size_t arr_len);
+int arr_scan(int arr[], size_t arr_len);
 void arr_print(int arr[], size_t arr_len);
 
 void fibs_init(int fib_numbers[], size_t fib_len);
@@ -27,7 +27,7 @@ int main(void)
     }
 
     printf("Enter elements of an array:\n");
-    if (arr_read(arr, arr_len))
+    if (arr_scan(arr, arr_len))
     {
         printf("Input array error.\n");
         return INPUT_ARRAY_ERROR;
@@ -41,7 +41,7 @@ int main(void)
     return 0;
 }
 
-int arr_read(int arr[], size_t arr_len)
+int arr_scan(int arr[], size_t arr_len)
 {
     for (size_t i = 0; i < arr_len; ++i)
         if (scanf("%d", &arr[i]) != 1)

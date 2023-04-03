@@ -6,7 +6,7 @@
 #define INPUT_ARRAY_ERROR 2
 #define NO_ODDS_ERROR 3
 
-int arr_read(int arr[], size_t arr_len);
+int arr_scan(int arr[], size_t arr_len);
 int product_of_odds(int arr[], size_t arr_len);
 
 int main(void)
@@ -22,7 +22,7 @@ int main(void)
     }
 
     printf("Enter elements of an array:\n");
-    if (arr_read(arr, arr_len))
+    if (arr_scan(arr, arr_len))
     {
         printf("Input array error.\n");
         return INPUT_ARRAY_ERROR;
@@ -39,7 +39,7 @@ int main(void)
     return 0;
 }
 
-int arr_read(int arr[], size_t arr_len)
+int arr_scan(int arr[], size_t arr_len)
 {
     for (size_t i = 0; i < arr_len; ++i)
         if (scanf("%d", &arr[i]) != 1)

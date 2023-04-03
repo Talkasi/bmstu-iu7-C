@@ -5,7 +5,7 @@
 #define INPUT_ARRAY_ERROR 2
 #define OVERFLOW_ERROR 100
 
-size_t arr_read(int arr[], size_t len_max);
+size_t arr_scan(int arr[], size_t len_max);
 void arr_print(int arr[], size_t arr_len);
 
 void bubble_sort(int arr[], size_t arr_len);
@@ -17,7 +17,7 @@ int main(void)
     int ret_code = 0;
 
     printf("Enter elements of an array:\n");
-    if ((arr_len = arr_read(arr, N_MAX)) == 0)
+    if ((arr_len = arr_scan(arr, N_MAX)) == 0)
     {
         printf("Input array error.\n");
         return INPUT_ARRAY_ERROR;
@@ -49,7 +49,7 @@ void bubble_sort(int arr[], size_t arr_len)
             }
 }
 
-size_t arr_read(int arr[], size_t len_max)
+size_t arr_scan(int arr[], size_t len_max)
 {
     size_t i = 0;
     int temp;
