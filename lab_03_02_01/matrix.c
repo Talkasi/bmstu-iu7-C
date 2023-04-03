@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int matrix_scan(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+int matrix_scan(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
@@ -11,7 +11,7 @@ int matrix_scan(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     return 0;
 }
 
-void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void matrix_print(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
     {
@@ -22,28 +22,31 @@ void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     }
 }
 
-void min_digits_sum_indexes(size_t indexes[N_INDEXES], arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+int min_digits_sum_index_find(arr_t matrix[], size_t n_rows, size_t n_columns, size_t *row_min, size_t *column_min)
 {
-    int min_digits_sum = digits_sum(abs(matrix[0][0]));
-    indexes[0] = 0;
-    indexes[1] = 0;
+    int min_digits_sum = matrix[0][0];
+    *row_min = 0;
+    *column_min = 0;
 
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
         {
-            int digits_sum_cur = digits_sum(abs(matrix[i][j]));
-            if (digits_sum_cur < min_digits_sum)
+            int sum_cur = digits_sum(matrix[i][j]);
+            if (sum_cur < min_digits_sum)
             {
-                min_digits_sum = digits_sum_cur;
-                indexes[0] = i;
-                indexes[1] = j;
+                min_digits_sum = sum_cur;
+                *row_min = i;
+                *column_min = j;
             }
         }
+
+    return min_digits_sum;
 }
 
 int digits_sum(int num)
 {
     int sum = 0;
+    num = abs(num);
 
     while (num > 0)
     {
@@ -54,48 +57,17 @@ int digits_sum(int num)
     return sum;
 }
 
-void row_column_delete(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns, size_t indexes[N_INDEXES])
+void row_and_column_delete(arr_t matrix[], size_t *n_rows, size_t *n_columns, size_t row_del, size_t column_del)
 {
-    for (size_t i = 0; i < *n_rows; ++i)
-        elem_delete(matrix[i], *n_columns, indexes[1]);
+    for (size_t i = row_del; i < *n_rows - 1; ++i)
+        for (size_t j = 0; j < *n_columns; ++j)
+            matrix[i][j] = matrix[i + 1][j];
+
+    --*n_rows;
+
+    for (size_t j = column_del; j < *n_columns - 1; ++j)
+        for (size_t i = 0; i < *n_rows; ++i)
+            matrix[i][j] = matrix[i][j + 1];
 
     --*n_columns;
-    matrix_transpose(matrix, n_rows, n_columns);
-
-    for (size_t i = 0; i < *n_rows; ++i)
-        elem_delete(matrix[i], *n_columns, indexes[0]);
-
-    --*n_columns;
-    matrix_transpose(matrix, n_rows, n_columns);
-}
-
-void elem_delete(int arr[], size_t arr_len, size_t position_to_delete)
-{
-    for (size_t i = position_to_delete; i < arr_len - 1; ++i)
-        arr[i] = arr[i + 1];
-}
-
-void matrix_transpose(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns)
-{
-    size_t n_sq = max(*n_rows, *n_columns);
-
-    for (size_t i = 0; i < n_sq; ++i)
-        for (size_t j = i; j < n_sq; ++j)
-        {
-            int temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
-        }
-
-    int temp = *n_columns;
-    *n_columns = *n_rows;
-    *n_rows = temp;
-}
-
-size_t max(size_t a, size_t b)
-{
-    if (a > b)
-        return a;
-
-    return b;
 }

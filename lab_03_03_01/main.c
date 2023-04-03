@@ -7,19 +7,19 @@
 
 int main(void)
 {
-    arr_t matrix[N_COLUMNS_MAX];
+    arr_t matrix[N_ROWS_MAX];
     size_t n_rows;
     size_t n_columns;
 
     printf("Enter number of rows: ");
-    if (scanf("%zu", &n_rows) != 1 || n_rows < 1 || n_rows > N_ROWS_MAX)
+    if (scanf("%zu", &n_rows) != 1 || n_rows == 0 || n_rows > N_ROWS_MAX)
     {
         printf("Input rows number error.\n");
         return INPUT_N_ROWS_ERROR;
     }
 
     printf("Enter number of columns: ");
-    if (scanf("%zu", &n_columns) != 1 || n_columns < 1 || n_columns > N_COLUMNS_MAX)
+    if (scanf("%zu", &n_columns) != 1 || n_columns == 0 || n_columns > N_COLUMNS_MAX)
     {
         printf("Input columns number error.\n");
         return INPUT_N_COLUMNS_ERROR;
@@ -32,10 +32,7 @@ int main(void)
         return INPUT_MATRIX_ERROR;
     }
 
-    size_t max_indexes[N_COLUMNS_MAX];
-
-    max_indexes_arr(max_indexes, matrix, n_rows, n_columns);
-    insertion_sort(matrix, n_rows, n_columns, max_indexes);
+    bubble_sort(matrix, n_rows, n_columns);
 
     printf("Sorted matrix is:\n");
     matrix_print(matrix, n_rows, n_columns);

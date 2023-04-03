@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int matrix_scan(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+int matrix_scan(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
@@ -11,7 +11,7 @@ int matrix_scan(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     return 0;
 }
 
-void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void matrix_print(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
     {
@@ -22,7 +22,7 @@ void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     }
 }
 
-void rows_special_swap(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void rows_special_swap(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     size_t k = 0;
 

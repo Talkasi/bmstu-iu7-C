@@ -7,19 +7,13 @@
 
 #define N_INDEXES 2
 
-typedef int arr_t[N_ROWS_MAX];
+typedef int arr_t[N_COLUMNS_MAX];
 
-int matrix_scan(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns);
-void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns);
-
-void matrix_transpose(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns);
+int matrix_scan(arr_t matrix[], size_t n_rows, size_t n_columns);
+void matrix_print(arr_t matrix[], size_t n_rows, size_t n_columns);
 
 int digits_sum(int num);
-void min_digits_sum_indexes(size_t indexes[N_INDEXES], arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns);
-
-void elem_delete(int arr[], size_t arr_len, size_t position_to_delete);
-void row_column_delete(arr_t matrix[N_COLUMNS_MAX], size_t *n_rows, size_t *n_columns, size_t indexes[N_INDEXES]);
-
-size_t max(size_t a, size_t b);
+int min_digits_sum_index_find(arr_t matrix[], size_t n_rows, size_t n_columns, size_t *row_min, size_t *column_min);
+void row_and_column_delete(arr_t matrix[], size_t *n_rows, size_t *n_columns, size_t row_del, size_t column_del);
 
 #endif

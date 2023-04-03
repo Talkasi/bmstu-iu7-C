@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int matrix_scan(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+int matrix_scan(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
@@ -11,7 +11,7 @@ int matrix_scan(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     return 0;
 }
 
-void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void matrix_print(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
     {
@@ -22,13 +22,13 @@ void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     }
 }
 
-size_t arr_by_digits_sum_init(int arr[], arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns, int border)
+size_t arr_by_digits_sum_init(int arr[], arr_t matrix[], size_t n_rows, size_t n_columns, int min_digits_sum)
 {
     size_t arr_len = 0;
 
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
-            if (digits_sum(matrix[i][j]) > border)
+            if (digits_sum(matrix[i][j]) > min_digits_sum)
                 arr[arr_len++] = matrix[i][j];
 
     return arr_len;
@@ -61,12 +61,12 @@ int digits_sum(int num)
     return sum;
 }
 
-void matrix_by_digits_sum_init(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns, int arr[], int border)
+void matrix_by_digits_sum_change(arr_t matrix[], size_t n_rows, size_t n_columns, int arr[], int min_digits_sum)
 {
     size_t i_arr = 0;
 
     for (size_t i = 0; i < n_rows; ++i)
         for (size_t j = 0; j < n_columns; ++j)
-            if (digits_sum(matrix[i][j]) > border)
+            if (digits_sum(matrix[i][j]) > min_digits_sum)
                 matrix[i][j] = arr[i_arr++];
 }

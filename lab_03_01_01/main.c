@@ -9,7 +9,7 @@ void arr_print(int arr[], size_t arr_len);
 
 int main(void)
 {
-    arr_t matrix[N_COLUMNS_MAX];
+    arr_t matrix[N_ROWS_MAX];
     size_t n_rows;
     size_t n_columns;
 
