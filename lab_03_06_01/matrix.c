@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void matrix_print(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     for (size_t i = 0; i < n_rows; ++i)
     {
@@ -12,7 +12,7 @@ void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
     }
 }
 
-void spiral_init(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns)
+void spiral_init(arr_t matrix[], size_t n_rows, size_t n_columns)
 {
     size_t i_start = 0, i_end = 0;
     size_t j_start = 0, j_end = 0;
