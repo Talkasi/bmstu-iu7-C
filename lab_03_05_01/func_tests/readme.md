@@ -17,5 +17,5 @@
 - Invalid number of rows;
 - Invalid number of columns;
 - Wrong matrix element;
-- There aren't elements with sum of digits greater than `10`
+- There aren't elements with sum of digits greater than `10`;
 - File is empty.

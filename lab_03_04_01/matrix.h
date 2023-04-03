@@ -7,7 +7,7 @@
 
 typedef int arr_t[N_ROWS_MAX];
 
-int matrix_read(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns);
+int matrix_scan(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns);
 void matrix_print(arr_t matrix[N_COLUMNS_MAX], size_t n_rows, size_t n_columns);
 
 void swap(int *a, int *b);

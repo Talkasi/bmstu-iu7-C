@@ -11,14 +11,14 @@ int main(void)
     size_t n_rows;
     size_t n_columns;
 
-    printf("Input number of rows: ");
+    printf("Enter number of rows: ");
     if (scanf("%zu", &n_rows) != 1 || n_rows < 1 || n_rows > N_ROWS_MAX)
     {
         printf("Input rows number error.\n");
         return INPUT_N_ROWS_ERROR;
     }
 
-    printf("Input number of columns: ");
+    printf("Enter number of columns: ");
     if (scanf("%zu", &n_columns) != 1 || n_columns < 1 || n_columns > N_COLUMNS_MAX)
     {
         printf("Input columns number error.\n");
