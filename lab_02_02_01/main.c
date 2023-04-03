@@ -6,7 +6,7 @@
 #define INPUT_ARRAY_ERROR 2
 #define NO_PRIMES_ERROR 3
 
-int arr_read(int arr[], size_t arr_len);
+int arr_scan(int arr[], size_t arr_len);
 void arr_print(int arr[], size_t arr_len);
 
 int is_prime(int number);
@@ -27,7 +27,7 @@ int main(void)
     }
 
     printf("Enter elements of an array:\n");
-    if (arr_read(arr, arr_len))
+    if (arr_scan(arr, arr_len))
     {
         printf("Input array error.\n");
         return INPUT_ARRAY_ERROR;
@@ -74,7 +74,7 @@ size_t arr_primes_copy(int dst[], int src[], size_t src_len)
     return dst_len;
 }
 
-int arr_read(int arr[], size_t arr_len)
+int arr_scan(int arr[], size_t arr_len)
 {
     for (size_t i = 0; i < arr_len; ++i)
         if (scanf("%d", &arr[i]) != 1)
