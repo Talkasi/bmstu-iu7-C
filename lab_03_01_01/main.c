@@ -13,14 +13,14 @@ int main(void)
     size_t n_rows;
     size_t n_columns;
 
-    printf("Input number of rows: ");
+    printf("Enter number of rows: ");
     if (scanf("%zu", &n_rows) != 1 || n_rows == 0 || n_rows > N_ROWS_MAX)
     {
         printf("Input rows number error.\n");
         return INPUT_N_ROWS_ERROR;
     }
 
-    printf("Input number of columns: ");
+    printf("Enter number of columns: ");
     if (scanf("%zu", &n_columns) != 1 || n_columns == 0 || n_columns > N_COLUMNS_MAX)
     {
         printf("Input columns number error.\n");
@@ -28,7 +28,7 @@ int main(void)
     }
 
     printf("Enter elements of matrix line by line:\n");
-    if (matrix_read(matrix, n_rows, n_columns))
+    if (matrix_scan(matrix, n_rows, n_columns))
     {
         printf("Input matrix error.\n");
         return INPUT_MATRIX_ERROR;
@@ -38,7 +38,7 @@ int main(void)
 
     symmetric_info_init(symmetric_info, matrix, n_rows, n_columns);
 
-    printf("Elements of the new matrix:\n");
+    printf("Elements of the symmetric info array:\n");
     arr_print(symmetric_info, n_rows);
 
     return 0;
