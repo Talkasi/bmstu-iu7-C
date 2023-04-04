@@ -1,7 +1,7 @@
 # Mct_01_02_02 tests
 ## Input data
-- Number of elements in an array `n`. Should be bigger than `0` and less than `1024`;
-- `n` integer elements of an array;
+- Number of elements in an array `n`. Should be bigger than `0` and less than `1025`;
+- Number `n` integer elements of an array;
 - `number` to insert after each two-digit element.
 ## Output data
 - Аn array with the square elements from the given array, and with a `number` inserted after each two-digit element;
@@ -18,6 +18,6 @@
 - Number of elements of the given array is negative;
 - Number of elements of the given array is zero;
 - Number of elements of the given array is bigger than 1024;
-- There are fewer elements of the given array than `n`;
+- There are fewer elements in the given array than `n`;
 - `number` to insert is not a number;
 - File is empty.
