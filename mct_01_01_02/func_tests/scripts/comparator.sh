@@ -7,7 +7,7 @@ fi
 program_out=$1
 test_out=$2
 
-mask="[+-]?[0-9][0-9]*"
+mask="[+-]?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?"
 
 program_out_numbers=$(grep -Eo "$mask" "$program_out")
 test_out_numbers=$(grep -Eo "$mask" "$test_out")
