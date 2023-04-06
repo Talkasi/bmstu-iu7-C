@@ -35,7 +35,7 @@ int main(void)
 double my_sum(double x, double eps)
 {
     int i = 3;
-    double a_j = -x / 216.0; /* 216 = 2 * 5! - 4! */
+    double a_j = -x / (2 * 5 * 4 * 3 * 2 - 4 * 3 * 2);
     double sum = 0;
 
     while (fabs(a_j) >= eps)
