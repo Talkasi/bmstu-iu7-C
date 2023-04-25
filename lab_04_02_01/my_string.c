@@ -50,14 +50,18 @@ size_t arr_uwords_fill(char words[][MAX_WORD_LEN], char *s)
             if (!in_word)
                 in_word = 1;
 
-            word[j++] = s[i];
+            if (j + 1 < MAX_WORD_LEN)
+                word[j++] = s[i];
+            else
+                return 0;
         }
     }
 
-    word[j++] = '\0';
-    if (in_word && is_unique(words, n_words, word))
+    if (in_word)
     {
-        strncpy(words[n_words++], word, j);
+        word[j++] = '\0';
+        if (is_unique(words, n_words, word))
+            strncpy(words[n_words++], word, j);
     }
 
     return n_words;
