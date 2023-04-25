@@ -48,8 +48,6 @@ size_t my_strcspn(const char *s, const char *reject)
         for (size_t j = 0; reject[j] != '\0'; ++j)
             if (s[i] == reject[j])
                 return n;
-            else
-                break;
 
         ++n;
     }
