@@ -1,9 +1,23 @@
 #include "my_string.h"
-#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
 int is_unique(char words[][MAX_WORD_LEN], size_t words_len, char *word);
+int is_separator(char c);
+char *separators = " ,;:-.!?";
+
+size_t line_scan(char *s, size_t s_max_len)
+{
+    int c;
+    size_t i = 0;
+
+    while ((c = getchar()) != '\n' && c != EOF)
+        if (i < s_max_len - 1)
+            s[i++] = c;
+
+    s[i] = '\0';
+    return i;
+}
 
 size_t arr_uwords_fill(char words[][MAX_WORD_LEN], char *s)
 {
@@ -15,7 +29,7 @@ size_t arr_uwords_fill(char words[][MAX_WORD_LEN], char *s)
 
     for (size_t i = 0; s[i] != '\0'; ++i)
     {
-        if (isspace(s[i]))
+        if (is_separator(s[i]))
         {
             if (in_word)
             {
@@ -40,6 +54,12 @@ size_t arr_uwords_fill(char words[][MAX_WORD_LEN], char *s)
         }
     }
 
+    word[j++] = '\0';
+    if (in_word && is_unique(words, n_words, word))
+    {
+        strncpy(words[n_words++], word, j);
+    }
+
     return n_words;
 }
 
@@ -50,6 +70,15 @@ int is_unique(char words[][MAX_WORD_LEN], size_t words_len, char *word)
             return 0;
 
     return 1;
+}
+
+int is_separator(char c)
+{
+    for (size_t i = 0; separators[i] != '\0'; ++i)
+        if (c == separators[i])
+            return 1;
+
+    return 0;
 }
 
 void str_arr_print(char words[][MAX_WORD_LEN], size_t words_len)

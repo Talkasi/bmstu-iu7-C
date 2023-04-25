@@ -1,12 +1,12 @@
 #include "my_string.h"
 #include <stdio.h>
 
-#define MAX_STR_LEN 1024
+#define MAX_STR_LEN 256
 
 int main(void)
 {
     char s[MAX_STR_LEN];
-    if (fgets(s, MAX_STR_LEN, stdin) == NULL)
+    if (line_scan(s, MAX_STR_LEN) == 0)
         return 1;
 
     char words[MAX_STR_LEN][MAX_WORD_LEN];
