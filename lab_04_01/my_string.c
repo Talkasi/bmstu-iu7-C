@@ -1,82 +1,79 @@
 #include "my_string.h"
 #include <stddef.h>
 
-char *my_strpbrk(char *s, char *accept)
+char *my_strpbrk(const char *s, const char *accept)
 {
     size_t i = 0;
-    size_t j = 0;
 
     while (s[i] != '\0')
     {
+        size_t j = 0;
         while (accept[j] != '\0')
-        {
-            if (s[i] == accept[j])
-                return s;
-            ++j;
-        }
+            if (s[i] == accept[j++])
+                return (char *)&s[i];
+
         ++i;
     }
 
     return NULL;
 }
 
-size_t my_strspn(char *s, char *accept)
+size_t my_strspn(const char *s, const char *accept)
 {
     size_t n = 0;
-    size_t j = 0;
+    size_t j;
 
-    while (s[j] != '\0')
+    for (size_t i = 0; s[i] != '\0'; ++i)
     {
-        size_t i = 0;
-        while (accept[i] != '\0')
-            if (s[j] == accept[i++])
+        for (j = 0; accept[j] != '\0'; ++j)
+            if (s[i] == accept[j])
             {
                 ++n;
                 break;
             }
-        ++j;
+
+        if (accept[j] == '\0')
+            break;
     }
 
     return n;
 }
 
-size_t my_strcspn(char *s, char *reject)
+size_t my_strcspn(const char *s, const char *reject)
 {
     size_t n = 0;
-    size_t j = 0;
 
-    while (s[j] != '\0')
+    for (size_t i = 0; s[i] != '\0'; ++i)
     {
-        size_t i = 0;
-        while (reject[i] != '\0')
-            if (s[j] == reject[i++])
-            {
-                ++n;
+        for (size_t j = 0; reject[j] != '\0'; ++j)
+            if (s[i] == reject[j])
+                return n;
+            else
                 break;
-            }
-        ++j;
+
+        ++n;
     }
 
-    return j - n;
+    return n;
 }
 
-char *my_strchr(char *s, int c)
+char *my_strchr(const char *s, int c)
 {
     size_t i = 0;
     while (s[i] != '\0')
     {
         if (s[i] == c)
-            return &s[i];
+            return (char *)&s[i];
         ++i;
     }
 
     if (c == '\0')
-        return &s[i];
+        return (char *)&s[i];
 
     return NULL;
 }
 
-char *my_strrchr(char *s, int c)
+char *my_strrchr(const char *s, int c)
 {
     char *p = NULL;
     size_t i = 0;
@@ -84,12 +81,12 @@ char *my_strrchr(char *s, int c)
     while (s[i] != '\0')
     {
         if (s[i] == c)
-            p = &s[i];
+            p = (char *)&s[i];
         ++i;
     }
 
     if (c == '\0')
-        return &s[i];
+        return (char *)&s[i];
 
     return p;
 }

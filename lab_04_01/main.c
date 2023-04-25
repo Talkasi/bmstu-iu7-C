@@ -2,29 +2,30 @@
 #include <stdio.h>
 #include <string.h>
 
-#define N_TESTS 6
+#define N_TESTS 7
 
 int main(void)
 {
     size_t n_errors = 0;
 
+    char *s[N_TESTS] = { "", " ", "", "char", "charchar", "char", "1222224" };
+    char *param[N_TESTS] = { "", "", "char", "char", "char", "?", "229" };
+    char c[N_TESTS] = { '\0', ' ', 'b', 'a', 'r', 'c', '9' };
+
     {
         /* my_strpbrk testing */
-        char *s[N_TESTS] = {"", " ", "", "char", "charchar", "char"};
-        char *accept[N_TESTS] = {"", "", "char", "char", "char", "?"};
-
         for (size_t i = 0; i < N_TESTS; ++i)
         {
-            char *my_res = my_strpbrk(s[i], accept[i]);
-            char *res = strpbrk(s[i], accept[i]);
+            char *my_res = my_strpbrk(s[i], param[i]);
+            char *res = strpbrk(s[i], param[i]);
 
             if (my_res != res)
             {
-                printf(">> Error in my_strpbrk\n"
-                       "Input parameters: %20s %20s\n"
-                       "Submitted:        %20s\n"
-                       "Expected:         %20s\n",
-                       s[i], accept[i], my_res, res);
+                printf(">> Error in my_strpbrk\n");
+                printf("Input parameters: %20s %20s\n", s[i], param[i]);
+                printf("Submitted:        %20s\n", my_res);
+                printf("Expected:         %20s\n", res);
+
                 ++n_errors;
             }
         }
@@ -32,21 +33,18 @@ int main(void)
 
     {
         /* my_strspn testing */
-        char *s[N_TESTS] = {"", " ", "", "char", "charchar", "char"};
-        char *accept[N_TESTS] = {"", "", "char", "char", "char", "?"};
-
         for (size_t i = 0; i < N_TESTS; ++i)
         {
-            size_t my_res = my_strspn(s[i], accept[i]);
-            size_t res = strspn(s[i], accept[i]);
+            size_t my_res = my_strspn(s[i], param[i]);
+            size_t res = strspn(s[i], param[i]);
 
             if (my_res != res)
             {
-                printf("\n>> Error in my_strspn\n"
-                       "Input parameters: %20s %20s\n"
-                       "Submitted:        %20zu\n"
-                       "Expected:         %20zu\n",
-                       s[i], accept[i], my_res, res);
+                printf(">> Error in my_strspn\n");
+                printf("Input parameters: %20s %20s\n", s[i], param[i]);
+                printf("Submitted:        %20zu\n", my_res);
+                printf("Expected:         %20zu\n", res);
+
                 ++n_errors;
             }
         }
@@ -54,21 +52,18 @@ int main(void)
 
     {
         /* my_strspn testing */
-        char *s[N_TESTS] = {"", " ", "", "char", "charchar", "char"};
-        char *reject[N_TESTS] = {"", "", "char", "char", "char", "?"};
-
         for (size_t i = 0; i < N_TESTS; ++i)
         {
-            size_t my_res = my_strcspn(s[i], reject[i]);
-            size_t res = strcspn(s[i], reject[i]);
+            size_t my_res = my_strcspn(s[i], param[i]);
+            size_t res = strcspn(s[i], param[i]);
 
             if (my_res != res)
             {
-                printf("\n>> Error in my_strspn\n"
-                       "Input parameters: %20s %20s\n"
-                       "Submitted:        %20zu\n"
-                       "Expected:         %20zu\n",
-                       s[i], reject[i], my_res, res);
+                printf(">> Error in my_strcspn\n");
+                printf("Input parameters: %20s %20s\n", s[i], param[i]);
+                printf("Submitted:        %20zu\n", my_res);
+                printf("Expected:         %20zu\n", res);
+
                 ++n_errors;
             }
         }
@@ -76,9 +71,6 @@ int main(void)
 
     {
         /* my_strchr testing */
-        char *s[N_TESTS] = {"", " ", "", "char", "charchar", "char"};
-        char c[N_TESTS] = {'\0', ' ', 'b', 'a', 'r', 'c'};
-
         for (size_t i = 0; i < N_TESTS; ++i)
         {
             char *my_res = my_strchr(s[i], c[i]);
@@ -86,11 +78,11 @@ int main(void)
 
             if (my_res != res)
             {
-                printf("\n>> Error in my_strchr\n"
-                       "Input parameters: %20s %20c\n"
-                       "Submitted:        %20s\n"
-                       "Expected:         %20s\n",
-                       s[i], c[i], my_res, res);
+                printf(">> Error in my_strchr\n");
+                printf("Input parameters: %20s %20c\n", s[i], c[i]);
+                printf("Submitted:        %20s\n", my_res);
+                printf("Expected:         %20s\n", res);
+
                 ++n_errors;
             }
         }
@@ -98,9 +90,6 @@ int main(void)
 
     {
         /* my_strrchr testing */
-        char *s[N_TESTS] = {"", " ", "", "char", "charchar", "char"};
-        char c[N_TESTS] = {'\0', ' ', 'b', 'a', 'r', 'c'};
-
         for (size_t i = 0; i < N_TESTS; ++i)
         {
             char *my_res = my_strrchr(s[i], c[i]);
@@ -108,11 +97,11 @@ int main(void)
 
             if (my_res != res)
             {
-                printf("\n>> Error in my_strrchr\n"
-                       "Input parameters: %20s %20c\n"
-                       "Submitted:        %20s\n"
-                       "Expected:         %20s\n",
-                       s[i], c[i], my_res, res);
+                printf(">> Error in my_strcspn\n");
+                printf("Input parameters: %20s %20c\n", s[i], c[i]);
+                printf("Submitted:        %20s\n", my_res);
+                printf("Expected:         %20s\n", res);
+
                 ++n_errors;
             }
         }
