@@ -10,6 +10,7 @@
 - Unsorted words separated by different whitespaces, there are duplicates;
 - One word without whitespaces.
 ## Negative tests
-- There is only space in the line;
-- There are only whitespaces in the line;
+- There is only one space in the line;
+- There are only separators in the line;
+- Word length is bigger than 16;
 - File is empty.
