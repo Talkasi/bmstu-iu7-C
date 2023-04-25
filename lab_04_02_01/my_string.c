@@ -14,6 +14,8 @@ size_t line_scan(char *s, size_t s_max_len)
     while ((c = getchar()) != '\n' && c != EOF)
         if (i < s_max_len - 1)
             s[i++] = c;
+        else
+            return 0;
 
     s[i] = '\0';
     return i;
