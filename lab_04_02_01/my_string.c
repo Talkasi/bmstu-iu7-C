@@ -59,8 +59,7 @@ void str_arr_print(char words[][MAX_WORD_LEN], size_t words_len)
         for (size_t j = 0; words[i][j] != '\0'; ++j)
             putchar(words[i][j]);
 
-        if (i != words_len - 1)
-            putchar(' ');
+        putchar(' ');
     }
 }
 
