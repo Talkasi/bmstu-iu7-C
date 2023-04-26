@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    size_t n_errors = 0;
+    int n_errors = 0;
 
     char *s[N_TESTS] = { "", " ", "", "char", "charchar", "char", "1222224", "123" };
     char *param[N_TESTS] = { "", "", "char", "char", "char", "?", "229", "32" };
@@ -97,7 +97,7 @@ int main(void)
         }
     }
 
-    printf("Number of errors: %zu\n", n_errors);
+    printf("Number of errors: %d\n", n_errors);
 
-    return (int)n_errors;
+    return n_errors;
 }
