@@ -9,7 +9,7 @@ int main(void)
     if (line_scan(s, MAX_STR_LEN) == 0)
         return 1;
 
-    char words[MAX_STR_LEN][MAX_WORD_LEN];
+    char words[MAX_STR_LEN / 2][MAX_WORD_LEN];
     size_t n_words = arr_uwords_fill(words, s);
 
     if (n_words == 0)

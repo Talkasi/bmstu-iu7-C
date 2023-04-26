@@ -1,0 +1,17 @@
+# Lab_04_03_01 tests
+## Input data
+- Line.
+## Output data
+- New line with changed words from the given line. 
+- Program leaves only the first occurrences of each letter in the word.
+## Positive tests
+- `5` different words with unique letters;
+- `2` different words with unique letters, separated by different characters;
+- `4` different words with length `1`, separated by different characters;
+- There are duplicate words in the line, there are duplicated characters in the words;
+- There are more duplicate words in the line, there are duplicated characters in the words;
+## Negative tests
+- There is only one space in the line;
+- There are only separators in the line;
+- Word length is bigger than 16;
+- File is empty.
