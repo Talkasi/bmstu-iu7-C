@@ -12,7 +12,7 @@ int main(void)
     char words[MAX_STR_LEN / 2][MAX_WORD_LEN];
     size_t n_words = arr_words_fill(words, s);
 
-    if (n_words == 0)
+    if (n_words <= 1)
         return 1;
 
     char new_s[MAX_STR_LEN];
