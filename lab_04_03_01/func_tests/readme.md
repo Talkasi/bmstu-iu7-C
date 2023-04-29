@@ -16,4 +16,5 @@
 - There are only separators in the line;
 - Word length is bigger than 16;
 - There is only one word in the line;
-- Length of the line is bigger than `256`.
+- Length of the line is bigger than `256`;
+- There are only numbers in the line.
