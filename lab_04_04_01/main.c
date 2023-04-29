@@ -6,7 +6,7 @@
 int main(void)
 {
     char s[MAX_STR_LEN];
-    if (!line_scan(s, MAX_STR_LEN))
+    if (line_scan(s, MAX_STR_LEN) == MAX_STR_LEN + 1)
         return 1;
 
     if (is_real(s))
