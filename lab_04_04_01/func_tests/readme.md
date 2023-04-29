@@ -17,6 +17,7 @@
 - Wrong scientific form: there are no digits;
 - Rubbish at the end of the real number;
 - Wrong scientific form: there are digits only after the point;
+- Long number;
+- Empty line.
 ## Negative tests
-- Length of the line is bigger than `256`;
-- File is empty.
+- Length of the line is bigger than `256`.

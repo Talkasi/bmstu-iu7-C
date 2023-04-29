@@ -13,7 +13,7 @@ int line_scan(char *s, size_t s_max_len)
         if (i < s_max_len - 1)
             s[i++] = c;
         else
-            return 0;
+            return s_max_len + 1;
 
     s[i] = '\0';
     return i;
