@@ -1,30 +1,26 @@
 #include "my_string.h"
-#include <string.h>
+#include <ctype.h>
 #include <stdio.h>
+#include <string.h>
 
 #define SEPARATORS " ,;:-.!?"
 
 size_t word_change(char word[]);
 int is_present(char word[], size_t last_pos, char c);
 
-int line_scan(char *s)
+size_t line_scan(char *s, size_t s_max_len)
 {
-    char temp_s[MAX_STR_LEN + 1];
-    char *temp_p = fgets(temp_s, MAX_STR_LEN + 1, stdin);
+    int c;
+    size_t i = 0;
 
-    if (temp_p == NULL || temp_s[0] == '\n')
-        return 0;
+    while ((c = getchar()) != '\n' && c != EOF)
+        if (i < s_max_len - 1)
+            s[i++] = c;
+        else
+            return 0;
 
-    size_t len_temp_s = strlen(temp_s);
-    if (len_temp_s == MAX_STR_LEN && temp_s[len_temp_s - 1] != '\n')
-        return 0;
-
-    if (temp_s[len_temp_s - 1] == '\n')
-        temp_s[--len_temp_s] = '\0';
-
-    strcpy(s, temp_s);
-
-    return len_temp_s;
+    s[i] = '\0';
+    return i;
 }
 
 size_t arr_words_fill(char words[][MAX_WORD_LEN], char *s)
@@ -57,15 +53,21 @@ size_t line_special_create(char *s, char words[][MAX_WORD_LEN], size_t n_words)
         if (strcmp(words[i], words[n_words - 1]))
         {
             size_t nw_len = word_change(words[i]);
-            words[i][nw_len - 1] = ' ';
-            words[i][nw_len] = '\0';
+            if (nw_len > 1)
+            {
+                printf("%zu %20s", nw_len, words[i]);
+                words[i][nw_len - 1] = ' ';
+                words[i][nw_len] = '\0';
 
-            strcat(s, words[i]);
+                strcat(s, words[i]);
+            }
         }
     }
 
     size_t s_len = strlen(s);
-    s[s_len - 1] = '\0';
+    if (s_len != 0)
+        s[--s_len] = '\0';
+
     return s_len;
 }
 
@@ -74,7 +76,7 @@ size_t word_change(char word[])
     size_t j = 0;
 
     for (size_t i = 0; word[i] != '\0'; ++i)
-        if (!is_present(word, i, word[i]))
+        if (isalpha(word[i]) && !is_present(word, i, word[i]))
             word[j++] = word[i];
 
     word[j++] = '\0';
