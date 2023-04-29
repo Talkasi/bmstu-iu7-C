@@ -2,7 +2,7 @@
 #define MY_STRING_H
 #include <stddef.h>
 
-#define MAX_WORD_LEN 16
+#define MAX_WORD_LEN 17
 
 size_t line_scan(char *s, size_t s_max_len);
 void str_arr_print(char words[][MAX_WORD_LEN], size_t words_len);

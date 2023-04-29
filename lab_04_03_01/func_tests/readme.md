@@ -12,8 +12,8 @@
 - There are more duplicated words in the line, there are duplicated characters in the words;
 - There is a duplicated word in the line, there are duplicated characters in the words.
 ## Negative tests
-- There is only one space in the line;
+- File is empty;
 - There are only separators in the line;
 - Word length is bigger than 16;
-- File is empty;
+- There is only one word in the line;
 - Length of the line is bigger than `256`.
