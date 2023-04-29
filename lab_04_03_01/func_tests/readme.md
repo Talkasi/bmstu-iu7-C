@@ -8,10 +8,12 @@
 - `5` different words with unique letters;
 - `2` different words with unique letters, separated by different characters;
 - `4` different words with length `1`, separated by different characters;
-- There are duplicate words in the line, there are duplicated characters in the words;
-- There are more duplicate words in the line, there are duplicated characters in the words;
+- There are duplicated words in the line, there are duplicated characters in the words;
+- There are more duplicated words in the line, there are duplicated characters in the words;
+- There is a duplicated word in the line, there are duplicated characters in the words.
 ## Negative tests
 - There is only one space in the line;
 - There are only separators in the line;
 - Word length is bigger than 16;
-- File is empty.
+- File is empty;
+- Length of the line is bigger than `256`.

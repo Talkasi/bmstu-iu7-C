@@ -1,10 +1,31 @@
 #include "my_string.h"
 #include <string.h>
+#include <stdio.h>
 
 #define SEPARATORS " ,;:-.!?"
 
 size_t word_change(char word[]);
 int is_present(char word[], size_t last_pos, char c);
+
+int line_scan(char *s)
+{
+    char temp_s[MAX_STR_LEN + 1];
+    char *temp_p = fgets(temp_s, MAX_STR_LEN + 1, stdin);
+
+    if (temp_p == NULL || temp_s[0] == '\n')
+        return 0;
+
+    size_t len_temp_s = strlen(temp_s);
+    if (len_temp_s == MAX_STR_LEN && temp_s[len_temp_s - 1] != '\n')
+        return 0;
+
+    if (temp_s[len_temp_s - 1] == '\n')
+        temp_s[--len_temp_s] = '\0';
+
+    strcpy(s, temp_s);
+
+    return len_temp_s;
+}
 
 size_t arr_words_fill(char words[][MAX_WORD_LEN], char *s)
 {
@@ -26,6 +47,7 @@ size_t arr_words_fill(char words[][MAX_WORD_LEN], char *s)
 size_t line_special_create(char *s, char words[][MAX_WORD_LEN], size_t n_words)
 {
     int lw_check = 1;
+    s[0] = '\0';
 
     for (size_t i = n_words - 2; lw_check; --i)
     {

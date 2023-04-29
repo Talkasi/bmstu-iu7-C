@@ -3,6 +3,9 @@
 #include <stddef.h>
 
 #define MAX_WORD_LEN 16
+#define MAX_STR_LEN 256
+
+int line_scan(char *s);
 
 size_t line_special_create(char *s, char words[][MAX_WORD_LEN], size_t n_words);
 size_t arr_words_fill(char words[][MAX_WORD_LEN], char *s);

@@ -13,4 +13,5 @@
 - There is only one space in the line;
 - There are only separators in the line;
 - Word length is bigger than 16;
-- File is empty.
+- File is empty;
+- Length of the line is bigger than `256`.

@@ -10,7 +10,7 @@
 - Real number in the scientific form, with digits before the point and sign;
 - Simple real number with a sign, without digits before the point;
 - Simple real number with a sign, digits before the point;
-- Real number with ',' as a seporator;
+- Real number with ',' as a separator;
 - Wrong scientific form: there are digits only before the point;
 - There is no number in a line;
 - There are several numbers in a line;
@@ -18,4 +18,5 @@
 - Rubbish at the end of the real number;
 - Wrong scientific form: there are digits only after the point;
 ## Negative tests
+- Length of the line is bigger than `256`;
 - File is empty.

@@ -6,6 +6,8 @@
 int main(void)
 {
     char s[MAX_STR_LEN];
+
+    printf("Enter a line: \n");
     if (line_scan(s, MAX_STR_LEN) == 0)
         return 1;
 
