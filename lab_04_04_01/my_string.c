@@ -90,14 +90,11 @@ int is_real(char *s)
     return s[i] == '\0';
 }
 
-int digits_skip(char *s, size_t *cur_i)
+int digits_skip(char *s, size_t *i_start)
 {
-    size_t temp = *cur_i;
-    while (isdigit(s[*cur_i]))
-        ++*cur_i;
+    size_t temp = *i_start;
+    while (isdigit(s[*i_start]))
+        ++*i_start;
 
-    if (*cur_i == temp)
-        return 0;
-
-    return 1;
+    return *i_start - temp;
 }

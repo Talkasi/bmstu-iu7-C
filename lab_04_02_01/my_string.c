@@ -98,7 +98,7 @@ void str_arr_print(char words[][MAX_WORD_LEN], size_t words_len)
     }
 }
 
-void str_sort(char words[][MAX_WORD_LEN], size_t words_len)
+void buble_sort(char words[][MAX_WORD_LEN], size_t words_len)
 {
     for (size_t i = 0; i < words_len - 1; ++i)
         for (size_t j = i + 1; j < words_len; ++j)
