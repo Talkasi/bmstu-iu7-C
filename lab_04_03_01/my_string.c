@@ -6,7 +6,7 @@
 #define SEPARATORS " ,;:-.!?"
 
 size_t word_change(char word[]);
-int is_present(char word[], size_t last_pos, char c);
+int is_present(char word[], size_t max_i, char c);
 
 size_t line_scan(char *s, size_t s_max_len)
 {
@@ -55,7 +55,6 @@ size_t line_special_create(char *s, char words[][MAX_WORD_LEN], size_t n_words)
             size_t nw_len = word_change(words[i]);
             if (nw_len > 1)
             {
-                printf("%zu %20s", nw_len, words[i]);
                 words[i][nw_len - 1] = ' ';
                 words[i][nw_len] = '\0';
 
@@ -83,9 +82,9 @@ size_t word_change(char word[])
     return j;
 }
 
-int is_present(char word[], size_t last_pos, char c)
+int is_present(char word[], size_t max_i, char c)
 {
-    for (size_t i = 0; i < last_pos; ++i)
+    for (size_t i = 0; i < max_i; ++i)
         if (word[i] == c)
             return 1;
 

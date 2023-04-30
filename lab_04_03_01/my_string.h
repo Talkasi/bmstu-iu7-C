@@ -3,7 +3,6 @@
 #include <stddef.h>
 
 #define MAX_WORD_LEN 17
-#define MAX_STR_LEN 257
 
 size_t line_scan(char *s, size_t s_max_len);
 
