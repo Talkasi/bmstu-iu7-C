@@ -24,10 +24,10 @@ int main(void)
 
             for (size_t j = 0; j < sizeof(s) / sizeof(char *); ++j)
             {
-                if (s[j] != temp_s[j])
+                if (strcmp(s[j], temp_s[j]) != 0)
                     ++n_s;
 
-                if (param[j] != temp_param[j])
+                if (strcmp(param[j], temp_param[j]) != 0)
                     ++n_param;
             }
 
@@ -60,10 +60,10 @@ int main(void)
 
             for (size_t j = 0; j < sizeof(s) / sizeof(char *); ++j)
             {
-                if (s[j] != temp_s[j])
+                if (strcmp(s[j], temp_s[j]) != 0)
                     ++n_s;
 
-                if (param[j] != temp_param[j])
+                if (strcmp(param[j], temp_param[j]) != 0)
                     ++n_param;
             }
 
@@ -96,10 +96,10 @@ int main(void)
 
             for (size_t j = 0; j < sizeof(s) / sizeof(char *); ++j)
             {
-                if (s[j] != temp_s[j])
+                if (strcmp(s[j], temp_s[j]) != 0)
                     ++n_s;
 
-                if (param[j] != temp_param[j])
+                if (strcmp(param[j], temp_param[j]) != 0)
                     ++n_param;
             }
 
@@ -132,7 +132,7 @@ int main(void)
 
             for (size_t j = 0; j < sizeof(s) / sizeof(char *); ++j)
             {
-                if (s[j] != temp_s[j])
+                if (strcmp(s[j], temp_s[j]) != 0)
                     ++n_s;
 
                 if (c[j] != temp_c[j])
@@ -168,7 +168,7 @@ int main(void)
 
             for (size_t j = 0; j < sizeof(s) / sizeof(char *); ++j)
             {
-                if (s[j] != temp_s[j])
+                if (strcmp(s[j], temp_s[j]) != 0)
                     ++n_s;
 
                 if (c[j] != temp_c[j])
