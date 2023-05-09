@@ -1,18 +1,21 @@
 #include "my_string.h"
 #include <stdio.h>
 
-#define INPUT_LINE_ERROR 1
-#define EMPTY_RESULT_ERROR 2
-
-#define MAX_STR_LEN 257
+#define EMPTY_LINE_ERROR 1
+#define TOO_LONG_LINE_ERROR 2
+#define EMPTY_RESULT_ERROR 3
 
 int main(void)
 {
     char s[MAX_STR_LEN];
 
     printf("Enter a line: \n");
-    if (line_scan(s, MAX_STR_LEN) == 0)
-        return INPUT_LINE_ERROR;
+    size_t rc = line_scan(s);
+    if (rc == 0)
+        return EMPTY_LINE_ERROR;
+
+    if (rc == MAX_STR_LEN + 1)
+        return TOO_LONG_LINE_ERROR;
 
     char words[MAX_STR_LEN / 2][MAX_WORD_LEN];
     size_t n_words = arr_words_fill(words, s);

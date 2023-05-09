@@ -2,7 +2,9 @@
 #define MY_STRING_H
 #include <stddef.h>
 
-int line_scan(char *s, size_t s_max_len);
+#define MAX_STR_LEN 257
+
+size_t line_scan(char *s);
 
 int is_real(char *s);
 

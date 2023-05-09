@@ -8,19 +8,24 @@
 size_t word_change(char word[]);
 int is_present(char word[], size_t max_i, char c);
 
-size_t line_scan(char *s, size_t s_max_len)
+size_t line_scan(char *s)
 {
-    int c;
-    size_t i = 0;
+    char temp_s[MAX_STR_LEN + 1];
+    char *temp_p = fgets(temp_s, MAX_STR_LEN + 1, stdin);
 
-    while ((c = getchar()) != '\n' && c != EOF)
-        if (i < s_max_len - 1)
-            s[i++] = c;
-        else
-            return 0;
+    if (temp_p == NULL || temp_s[0] == '\n')
+        return 0;
 
-    s[i] = '\0';
-    return i;
+    size_t len_temp_s = strlen(temp_s);
+    if (len_temp_s == MAX_STR_LEN && temp_s[len_temp_s - 1] != '\n')
+        return MAX_STR_LEN + 1;
+
+    if (temp_s[len_temp_s - 1] == '\n')
+        temp_s[--len_temp_s] = '\0';
+
+    strcpy(s, temp_s);
+
+    return len_temp_s;
 }
 
 size_t arr_words_fill(char words[][MAX_WORD_LEN], char *s)
