@@ -3,50 +3,35 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NO_PARAMETERS_ERROR 1
+#define PARAMETERS_N_ERROR 1
 #define WRONG_PARAMETERS_ERROR 2
-#define FILE_OPEN_ERROR 3
-#define EMPTY_FILE_ERROR 4
-#define PRINTING_ERROR 5
+#define WRONG_NUMBER_KEY_ERROR 3
 
-enum keys
-{
-    C,
-    P,
-    S
-};
-
-int valid_param(char *key, int *state);
+#define FILE_OPEN_ERROR 4
+#define FILE_SIZE_ERROR 5
+#define PRINTING_ERROR 6
 
 int main(int argc, char *argv[])
 {
-    if (argc < 3)
+    if (argc != 3)
     {
-        printf("Error. Not enough parameters.\n");
-        return NO_PARAMETERS_ERROR;
+        printf("Error. Wrong number of parameters.\n");
+        return PARAMETERS_N_ERROR;
     }
 
-    int state;
-    if (!valid_param(argv[1], &state))
+    int number;
+    if ((number = atoi(argv[1])))
     {
-        printf("Error. Wrong parameters.\n");
-        return WRONG_PARAMETERS_ERROR;
-    }
-
-    if (state == C)
-    {
-        if (argc < 4)
+        FILE *f = fopen(argv[2], "wb");
+        if (number <= 0)
         {
-            printf("Error. Not enough parameters.\n");
-            return NO_PARAMETERS_ERROR;
+            printf("Error. Wrong amount of numbers to fill a file.\n");
+            return WRONG_NUMBER_KEY_ERROR;
         }
-
-        FILE *f = fopen(argv[3], "wb");
-        rand_fill(f, atoi(argv[2]));
+        rand_fill(f, number);
         fclose(f);
     }
-
-    if (state == P)
+    else if (strcmp(argv[1], "p") == 0)
     {
         FILE *f = fopen(argv[2], "rb");
         if (f == NULL)
@@ -55,10 +40,11 @@ int main(int argc, char *argv[])
             return FILE_OPEN_ERROR;
         }
 
-        if (file_size(f) == 0)
+        size_t fsize = file_size(f);
+        if (fsize == 0 || fsize % sizeof(int) != 0)
         {
-            printf("Error. File is empty.\n");
-            return EMPTY_FILE_ERROR;
+            printf("Error. Wrong file size.\n");
+            return FILE_SIZE_ERROR;
         }
 
         if (print(f))
@@ -68,8 +54,7 @@ int main(int argc, char *argv[])
         }
         fclose(f);
     }
-
-    if (state == S)
+    else if (strcmp(argv[1], "s") == 0)
     {
         FILE *f = fopen(argv[2], "rb+");
         if (f == NULL)
@@ -78,29 +63,16 @@ int main(int argc, char *argv[])
             return FILE_OPEN_ERROR;
         }
 
-        if (file_size(f) == 0)
+        size_t fsize = file_size(f);
+        if (fsize == 0 || fsize % sizeof(int) != 0)
         {
-            printf("Error. File is empty.\n");
-            return EMPTY_FILE_ERROR;
+            printf("Error. Wrong file size.\n");
+            return FILE_SIZE_ERROR;
         }
 
         bubble_sort(f);
         fclose(f);
     }
-
-    return 0;
-}
-
-int valid_param(char *key, int *state)
-{
-    char *valid_keys[] = { "c", "p", "s" };
-
-    for (size_t i = 0; i < sizeof(valid_keys) / sizeof(char *); ++i)
-        if (strcmp(key, valid_keys[i]) == 0)
-        {
-            *state = (int)i;
-            return 1;
-        }
 
     return 0;
 }
