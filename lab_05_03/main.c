@@ -73,6 +73,11 @@ int main(int argc, char *argv[])
         bubble_sort(f);
         fclose(f);
     }
+    else
+    {
+        printf("Error. Unknown parameters.\n");
+        return WRONG_PARAMETERS_ERROR;
+    }
 
     return 0;
 }
