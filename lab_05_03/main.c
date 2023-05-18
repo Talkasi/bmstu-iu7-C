@@ -48,6 +48,12 @@ int main(int argc, char *argv[])
     if (state == P)
     {
         FILE *f = fopen(argv[2], "rb");
+        if (f == NULL)
+        {
+            printf("Error. Can't open the file.\n");
+            return FILE_OPEN_ERROR;
+        }
+
         print(f);
         fclose(f);
     }
@@ -55,6 +61,12 @@ int main(int argc, char *argv[])
     if (state == S)
     {
         FILE *f = fopen(argv[2], "rb+");
+        if (f == NULL)
+        {
+            printf("Error. Can't open the file.\n");
+            return FILE_OPEN_ERROR;
+        }
+
         bubble_sort(f);
         fclose(f);
     }
