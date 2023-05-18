@@ -6,7 +6,8 @@
 #define NO_PARAMETERS_ERROR 1
 #define WRONG_PARAMETERS_ERROR 2
 #define FILE_OPEN_ERROR 3
-#define READING_ERROR 4
+#define EMPTY_FILE_ERROR 4
+#define PRINTING_ERROR 5
 
 enum keys
 {
@@ -54,7 +55,17 @@ int main(int argc, char *argv[])
             return FILE_OPEN_ERROR;
         }
 
-        print(f);
+        if (file_size(f) == 0)
+        {
+            printf("Error. File is empty.\n");
+            return EMPTY_FILE_ERROR;
+        }
+
+        if (print(f))
+        {
+            printf("Error while printing.\n");
+            return PRINTING_ERROR;
+        }
         fclose(f);
     }
 
@@ -65,6 +76,12 @@ int main(int argc, char *argv[])
         {
             printf("Error. Can't open the file.\n");
             return FILE_OPEN_ERROR;
+        }
+
+        if (file_size(f) == 0)
+        {
+            printf("Error. File is empty.\n");
+            return EMPTY_FILE_ERROR;
         }
 
         bubble_sort(f);

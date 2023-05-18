@@ -1,26 +1,34 @@
 #include "my_file.h"
 #include <stdlib.h>
 
-void rand_fill(FILE *f, size_t n_numbers)
+int rand_fill(FILE *f, size_t n_numbers)
 {
     fseek(f, 0, SEEK_SET);
     int rands[BUFSIZ];
+    int rc;
 
     for (size_t i = 1; i <= n_numbers; ++i)
     {
         rands[i - 1] = rand();
         if (i == n_numbers || i == BUFSIZ)
             fwrite(rands, sizeof(int), i % BUFSIZ, f);
+
+        if ((rc = ferror(f)))
+            return rc;
     }
+
+    return 0;
 }
 
-void print(FILE *f)
+int print(FILE *f)
 {
     fseek(f, 0, SEEK_SET);
     int number;
 
     while (fread(&number, sizeof(int), 1, f) == 1)
         printf("%d ", number);
+
+    return ferror(f);
 }
 
 int get_number_by_pos(FILE *f, size_t pos)
