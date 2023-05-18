@@ -51,5 +51,6 @@ int main(int argc, char *argv[])
     }
 
     printf("%lf\n", avrg);
+    fclose(f);
     return 0;
 }
