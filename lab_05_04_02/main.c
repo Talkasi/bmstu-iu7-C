@@ -89,7 +89,7 @@ int sort_text(char *dst_path, char *src_path)
 
     FILE *dst_f = fopen(dst_path, "w");
     if (dst_f == NULL)
-        return EMPTY_FILE_ERROR;
+        return FILE_OPEN_ERROR;
 
     struct product p[BUFSIZ];
     size_t n;
@@ -152,8 +152,6 @@ int add_text(char *f_path)
 
     insert_data(p, &n, &new_p);
 
-    print_data(p, n);
-
     if (save_data(f, p, n) == 0)
         return WRITING_ERROR;
 
@@ -169,7 +167,7 @@ int scan_data(struct product *new_p)
         return WRONG_INPUT_PARAMETER;
 
     printf("Enter manufacture of the product: ");
-    if ((rc = line_scan(stdin, new_p->mfr, MAX_MFR_LEN)) == 0 || rc == MAX_NAME_LEN + 1)
+    if ((rc = line_scan(stdin, new_p->mfr, MAX_MFR_LEN)) == 0 || rc == MAX_MFR_LEN + 1)
         return WRONG_INPUT_PARAMETER;
 
     printf("Enter price of the product: ");
