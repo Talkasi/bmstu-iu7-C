@@ -1,1 +1,1 @@
-st func_tests/data/pos_01_in.txt func_tests/data/pos_01_result.txt
+st func_tests/data/pos_01_in_file.txt func_tests/data/pos_01_result.txt

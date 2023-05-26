@@ -1,1 +1,1 @@
-st func_tests func_tests/data/neg_04_result.txt
+at func_tests/data/neg_04_in_file.txt
