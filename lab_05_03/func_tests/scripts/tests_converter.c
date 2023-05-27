@@ -14,6 +14,8 @@
 #define B2T 0
 #define T2B 1
 
+typedef int32_t my_type;
+
 void search_dir(char *path, int state);
 int txt_to_bin(char in_path[MAX_DIR_LEN]);
 int bin_to_txt(char in_path[MAX_DIR_LEN]);
@@ -89,8 +91,8 @@ int txt_to_bin(char in_path[MAX_DIR_LEN])
     size_t rc;
     while ((rc = line_scan(f_in, num)) != 0 && rc != MAX_STR_LEN + 1)
     {
-        int64_t temp = (int64_t)atoi(num);
-        fwrite(&temp, sizeof(int64_t), 1, f_out);
+        my_type temp = (my_type)atoi(num);
+        fwrite(&temp, sizeof(my_type), 1, f_out);
     }
 
     fclose(f_in);
@@ -116,9 +118,9 @@ int bin_to_txt(char in_path[MAX_DIR_LEN])
     }
 
     rewind(f_in);
-    int64_t num;
-    while (fread(&num, sizeof(int64_t), 1, f_in) == 1)
-        fprintf(f_out, "%"PRId64"\n", num);
+    my_type num;
+    while (fread(&num, sizeof(my_type), 1, f_in) == 1)
+        fprintf(f_out, "%" PRId32 "\n", num);
 
     fclose(f_in);
     fclose(f_out);
