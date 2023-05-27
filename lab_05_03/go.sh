@@ -30,4 +30,6 @@ echo -e "\n>>> Memory sanitizer"
 echo -e "\n>>> Undefined behavior sanitizer"
 ./build_debug_ubsan.sh
 ./func_tests/scripts/func_tests.sh
+./clean.sh
 
+rm ./func_tests/data/*.bin

@@ -7,13 +7,8 @@ fi
 program_out=$1
 test_out=$2
 
-mask="[+-]?[0-9][0-9]*"
-
-program_out_numbers=$(grep -Eo "$mask" "$program_out")
-test_out_numbers=$(grep -Eo "$mask" "$test_out")
-
-if [ "$program_out_numbers" != "$test_out_numbers" ]; then
-    exit 1
+if cmp "$program_out" "$test_out" > /dev/null 2>&1; then
+    exit 0
 fi
 
-exit 0
+exit 1
