@@ -26,7 +26,7 @@ int print(FILE *f)
     my_type number;
 
     while (fread(&number, sizeof(my_type), 1, f) == 1)
-        printf("%"PRId64" ", number);
+        printf("%" PRId64 " ", number);
 
     return ferror(f);
 }

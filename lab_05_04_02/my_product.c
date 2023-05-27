@@ -40,36 +40,35 @@ int read_data(FILE *f, struct product p[], size_t *n)
     int rc;
     while ((rc = line_scan(f, temp, MAX_STR_LEN)) != 0 && rc != MAX_STR_LEN + 1)
     {
-        switch (i % 4)
+        if (i % 4 == 0)
         {
-        case 0:
             if (strlen(temp) <= MAX_NAME_LEN)
                 strcpy(p[i / 4].name, temp);
             else
                 return -1;
-            break;
-        case 1:
+        }
+        else if (i % 4 == 1)
+        {
             if (strlen(temp) <= MAX_MFR_LEN)
                 strcpy(p[i / 4].mfr, temp);
             else
                 return -1;
-            break;
-        case 2: {
+        }
+        else if (i % 4 == 2)
+        {
             uint32_t price;
             if ((price = atoi(temp)) != 0)
                 p[i / 4].price = price;
             else
                 return -1;
-            break;
         }
-        case 3: {
+        else if (i % 4 == 3)
+        {
             uint32_t number;
             if ((number = atoi(temp)) != 0)
                 p[i / 4].n = number;
             else
                 return -1;
-            break;
-        }
         }
         ++i;
     }

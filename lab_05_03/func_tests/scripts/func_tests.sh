@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc tests_converter.c -o tc.out
+gcc ./func_tests/scripts/tests_converter.c -o tc.out
 ./tc.out t2b
 rm tc.out
 

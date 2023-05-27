@@ -20,6 +20,6 @@ int main(void)
         return NO_MAX_ERROR;
     }
 
-    printf("%d\n", max);
+    fprintf(stdout, "%d\n", max);
     return 0;
 }

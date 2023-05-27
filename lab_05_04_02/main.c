@@ -85,22 +85,35 @@ int sort_text(char *dst_path, char *src_path)
         return FILE_OPEN_ERROR;
 
     if (file_size(src_f) == 0)
+    {
+        fclose(src_f);
         return EMPTY_FILE_ERROR;
-
-    FILE *dst_f = fopen(dst_path, "w");
-    if (dst_f == NULL)
-        return FILE_OPEN_ERROR;
+    }
 
     struct product p[BUFSIZ];
     size_t n;
 
     if (read_data(src_f, p, &n))
+    {
+        fclose(src_f);
         return READING_ERROR;
+    }
 
     sort_data(p, n);
 
+    FILE *dst_f = fopen(dst_path, "w");
+    if (dst_f == NULL)
+    {
+        fclose(src_f);
+        return FILE_OPEN_ERROR;
+    }
+
     if (save_data(dst_f, p, n) == 0)
+    {
+        fclose(src_f);
+        fclose(dst_f);
         return WRITING_ERROR;
+    }
 
     fclose(src_f);
     fclose(dst_f);
@@ -114,16 +127,25 @@ int name_text(char *f_path, char *substr)
         return FILE_OPEN_ERROR;
 
     if (file_size(f) == 0)
+    {
+        fclose(f);
         return EMPTY_FILE_ERROR;
+    }
 
     struct product p[BUFSIZ];
     size_t n;
 
     if (read_data(f, p, &n))
+    {
+        fclose(f);
         return READING_ERROR;
+    }
 
     if (print_spec_data(p, n, substr) == 0)
+    {
+        fclose(f);
         return NO_SPEC_DATA;
+    }
 
     fclose(f);
     return 0;
@@ -136,7 +158,10 @@ int add_text(char *f_path)
         return FILE_OPEN_ERROR;
 
     if (file_size(f) == 0)
+    {
+        fclose(f);
         return EMPTY_FILE_ERROR;
+    }
 
     struct product p[BUFSIZ];
     size_t n;
@@ -145,15 +170,24 @@ int add_text(char *f_path)
 
     int rc;
     if ((rc = scan_data(&new_p)))
+    {
+        fclose(f);
         return rc;
+    }
 
     if (read_data(f, p, &n))
+    {
+        fclose(f);
         return READING_ERROR;
+    }
 
     insert_data(p, &n, &new_p);
 
     if (save_data(f, p, n) == 0)
+    {
+        fclose(f);
         return WRITING_ERROR;
+    }
 
     fclose(f);
     return 0;
