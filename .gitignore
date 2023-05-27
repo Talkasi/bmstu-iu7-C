@@ -4,3 +4,5 @@
 *.pch
 *.gch
 *.clang-format
+*.bin
+
