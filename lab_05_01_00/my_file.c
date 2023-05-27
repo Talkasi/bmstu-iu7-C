@@ -13,6 +13,8 @@ int process(FILE *f, int *max)
 
         if (number < 0)
             were_neg = 1;
+        else
+            were_neg = 0;
     }
 
     return ferror(f);

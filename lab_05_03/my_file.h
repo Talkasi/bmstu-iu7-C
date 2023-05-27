@@ -1,7 +1,7 @@
 #ifndef MY_FILE_H
 #define MY_FILE_H
-#include <stdio.h>
 #include <inttypes.h>
+#include <stdio.h>
 
 typedef int64_t my_type;
 
