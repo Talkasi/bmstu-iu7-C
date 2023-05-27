@@ -3,7 +3,7 @@
 #include <inttypes.h>
 #include <stdio.h>
 
-typedef int64_t my_type;
+typedef int32_t my_type;
 
 int rand_fill(FILE *f, size_t n_numbers);
 int print(FILE *f);
