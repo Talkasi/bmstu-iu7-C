@@ -1,9 +1,5 @@
 #!/bin/bash
 
-./func_tests/scripts/build_tc.sh
-./tc.out t2b
-rm tc.out
-
 ./func_tests/scripts/preproc.sh
 
 n_failed=0
@@ -20,14 +16,19 @@ for args_file in func_tests/data/pos_*_args.txt; do
         break
     fi
 
-    in_stream_file="func_tests/data/pos_""$test_number""_in_file.bin"
-    out_stream_file="func_tests/data/pos_""$test_number""_out_file.bin"
-    result_stream_file="func_tests/data/pos_""$test_number""_result.bin"
-    in_file=$(ls "func_tests/data/pos_""$test_number""_in.txt" 2>/dev/null)
-    out_file=$(ls "func_tests/data/pos_""$test_number""_out.txt" 2>/dev/null)
+    state=$(sed 1p "$args_file" | head -c 1)
 
-    if func_tests/scripts/pos_case.sh "$out_stream_file" "$result_stream_file" "$args_file" \
-        "$in_file" "$out_file" "$in_stream_file"; then
+    if [ "$state" == "p" ]; then
+        out_stream_file=$(ls "func_tests/data/pos_""$test_number""_out.txt")
+        in_stream_file=""
+    fi
+
+    if [ "$state" == "s" ]; then
+        out_stream_file="func_tests/data/pos_""$test_number""_out_file.bin"
+        in_stream_file="func_tests/data/pos_""$test_number""_in_file.bin"
+    fi
+
+    if func_tests/scripts/pos_case.sh "$in_stream_file" "$out_stream_file" "$args_file"; then
         echo -e "Test ""$test_number"": ${GREEN}PASSED${NC}"
     else
         n_failed=$((n_failed + 1))
@@ -53,9 +54,6 @@ for args_file in func_tests/data/neg_*_args.txt; do
         echo -e "Test ""$test_number"": ${RED}FAILED${NC}"
     fi
 done
-
-rm func_tests/data/pos_*_result.bin 2>/dev/null
-rm func_tests/data/neg_*_result.bin 2>/dev/null
 
 if [ "$n_failed" -ne "0" ]; then
     exit 1

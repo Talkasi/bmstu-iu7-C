@@ -1,10 +1,9 @@
-#include <dirent.h>
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define TESTS_DIR "./func_tests/data"
+#define N_TAILS 3
 #define BIN "file.bin"
 #define TXT "file.txt"
 
@@ -15,9 +14,7 @@
 #define T2B 1
 
 typedef int32_t my_type;
-typedef DIR dir;
-
-void search_dir(char *path, int state);
+void search_dir(int state);
 int txt_to_bin(char in_path[MAX_DIR_LEN]);
 int bin_to_txt(char in_path[MAX_DIR_LEN]);
 size_t line_scan(FILE *f, char *s);
@@ -31,9 +28,9 @@ int main(int argc, char *argv[])
     }
 
     if (strcmp(argv[1], "t2b") == 0)
-        search_dir(TESTS_DIR, T2B);
+        search_dir(T2B);
     else if (strcmp(argv[1], "b2t") == 0)
-        search_dir(TESTS_DIR, B2T);
+        search_dir(B2T);
     else
     {
         printf("Usage: ./app.exe b2t\n./app.exe t2b\n");
@@ -43,31 +40,48 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void search_dir(char *path, int state)
+void search_dir(int state)
 {
-    dir *dp = opendir(path);
-    if (!dp)
+    char pos_test_st[MAX_DIR_LEN] = "./func_tests/data/pos_0\0";
+    size_t pos_st_len = strlen(pos_test_st);
+    char test_end[N_TAILS][MAX_DIR_LEN] = { "_in_file.txt\0", "_out_file.txt\0", "_preproc_file.txt\0" };
+    for (int i = 1; i < 5; ++i)
     {
-        perror(path);
-        return;
+        pos_test_st[pos_st_len] = i + '0';
+        pos_test_st[pos_st_len + 1] = '\0';
+        for (int j = 0; j < N_TAILS; ++j)
+        {
+            char cur_path[MAX_DIR_LEN] = "";
+            strcpy(cur_path, pos_test_st);
+            strcat(cur_path, test_end[j]);
+            size_t dir_len = strlen(cur_path);
+            if (state == T2B && dir_len > strlen(TXT) && strcmp(cur_path + dir_len - strlen(TXT), TXT) == 0)
+                txt_to_bin(cur_path);
+
+            if (state == B2T && dir_len > strlen(BIN) && strcmp(cur_path + dir_len - strlen(BIN), BIN) == 0)
+                bin_to_txt(cur_path);
+        }
     }
 
-    struct dirent *ep;
-    while ((ep = readdir(dp)))
-        if (strncmp(ep->d_name, ".", 1) != 0)
+    char neg_test_st[MAX_DIR_LEN] = "./func_tests/data/pos_0\0";
+    size_t neg_st_len = strlen(neg_test_st);
+    for (int i = 1; i < 6; ++i)
+    {
+        neg_test_st[neg_st_len] = i + '0';
+        neg_test_st[neg_st_len + 1] = '\0';
+        for (int j = 0; j < N_TAILS; ++j)
         {
-            size_t dir_len = strlen(ep->d_name);
             char cur_path[MAX_DIR_LEN] = "";
-            strcat(cur_path, TESTS_DIR);
-            strcat(cur_path, "/");
-            if (state == T2B && dir_len > strlen(TXT) && strcmp(ep->d_name + dir_len - strlen(TXT), TXT) == 0)
-                txt_to_bin(strcat(cur_path, ep->d_name));
+            strcpy(cur_path, neg_test_st);
+            strcat(cur_path, test_end[j]);
+            size_t dir_len = strlen(cur_path);
+            if (state == T2B && dir_len > strlen(TXT) && strcmp(cur_path + dir_len - strlen(TXT), TXT) == 0)
+                txt_to_bin(cur_path);
 
-            if (state == B2T && dir_len > strlen(BIN) && strcmp(ep->d_name + dir_len - strlen(BIN), BIN) == 0)
-                bin_to_txt(strcat(cur_path, ep->d_name));
+            if (state == B2T && dir_len > strlen(BIN) && strcmp(cur_path + dir_len - strlen(BIN), BIN) == 0)
+                bin_to_txt(cur_path);
         }
-
-    closedir(dp);
+    }
 }
 
 int txt_to_bin(char in_path[MAX_DIR_LEN])

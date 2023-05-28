@@ -1,5 +1,8 @@
 #!/bin/bash
 
+./build_tc.sh
+./tc.out t2b
+
 ./clean.sh
 echo ">>> Check scripts start"
 ./check_scripts.sh
@@ -33,3 +36,4 @@ echo -e "\n>>> Undefined behavior sanitizer"
 ./clean.sh
 
 rm ./func_tests/data/*.bin
+rm tc.out
