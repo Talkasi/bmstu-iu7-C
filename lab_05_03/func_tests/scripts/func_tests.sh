@@ -1,6 +1,7 @@
 #!/bin/bash
 
-gcc ./func_tests/scripts/tests_converter.c -o tc.out
+gcc -std=c99 -Wall -Werror -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion \
+    -Wvla -O3 ./func_tests/scripts/tests_converter.c -o tc.out
 ./tc.out t2b
 rm tc.out
 
@@ -13,14 +14,14 @@ NC='\033[0m' # No Color
 
 # Positive tests
 echo "> Positive tests"
-for in_stream_file in func_tests/data/pos_*_in_file.bin; do
-    test_number=$(echo "$in_stream_file" | grep -o "[0-9]*")
+for args_file in func_tests/data/pos_*_args.txt; do
+    test_number=$(echo "$args_file" | grep -o "[0-9]*")
     if [ -z "$test_number" ]; then
         echo "There are no positive tests"
         break
     fi
 
-    args_file="func_tests/data/pos_""$test_number""_args.txt"
+    in_stream_file="func_tests/data/pos_""$test_number""_in_file.bin"
     out_stream_file="func_tests/data/pos_""$test_number""_out_file.bin"
     result_stream_file="func_tests/data/pos_""$test_number""_result.bin"
     in_file=$(ls "func_tests/data/pos_""$test_number""_in.txt" 2>/dev/null)

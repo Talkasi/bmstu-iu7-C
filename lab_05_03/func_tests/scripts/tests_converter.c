@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
 void search_dir(char *path, int state)
 {
-    DIR *dp = opendir(path);
+    struct __dirstream *dp = opendir(path);
     if (!dp)
     {
         perror(path);
@@ -76,7 +76,8 @@ int txt_to_bin(char in_path[MAX_DIR_LEN])
         return -1;
 
     char out_path[MAX_DIR_LEN] = "";
-    strncpy(out_path, in_path, strlen(in_path) - strlen(TXT));
+    strcpy(out_path, in_path);
+    out_path[strlen(in_path) - strlen(TXT)] = '\0';
     strcat(out_path, BIN);
 
     FILE *f_out = fopen(out_path, "wb");
@@ -107,7 +108,8 @@ int bin_to_txt(char in_path[MAX_DIR_LEN])
         return -1;
 
     char out_path[MAX_DIR_LEN] = "";
-    strncpy(out_path, in_path, strlen(in_path) - strlen(BIN));
+    strcpy(out_path, in_path);
+    out_path[strlen(in_path) - strlen(BIN) + 1] = '\0';
     strcat(out_path, TXT);
 
     FILE *f_out = fopen(out_path, "w");

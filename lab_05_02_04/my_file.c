@@ -1,11 +1,11 @@
 #include "my_file.h"
 
-int find_extremums_pos(FILE *f, size_t *min_pos, size_t *max_pos)
+int extremums_pos(FILE *f, size_t *min_pos, size_t *max_pos)
 {
     fseek(f, 0, SEEK_SET);
     double cur_number;
     if (fscanf(f, "%lf", &cur_number) != 1)
-        return -1;
+        return READING_ERROR;
 
     double min = cur_number;
     double max = cur_number;
@@ -29,10 +29,30 @@ int find_extremums_pos(FILE *f, size_t *min_pos, size_t *max_pos)
         ++i;
     }
 
-    return ferror(f);
+    if (ferror(f))
+        return READING_ERROR;
+
+    return 0;
 }
 
-int average(FILE *f, double *avrg, size_t start_pos, size_t end_pos)
+int bounds_correct(size_t *l_pos, size_t *r_pos)
+{
+    if (*l_pos > *r_pos)
+    {
+        int temp = *l_pos;
+        *l_pos = *r_pos;
+        *r_pos = temp;
+    }
+
+    *l_pos += 1;
+    *r_pos -= 1;
+    if (*l_pos > *r_pos)
+        return WRONG_BOUNDS_ERROR;
+
+    return 0;
+}
+
+int avrg(FILE *f, double *avrg, size_t start_pos, size_t end_pos)
 {
     fseek(f, 0, SEEK_SET);
     double cur_number;
@@ -46,7 +66,9 @@ int average(FILE *f, double *avrg, size_t start_pos, size_t end_pos)
         ++i;
     }
 
-    *avrg /= (end_pos - start_pos + 1);
+    if (ferror(f))
+        return READING_ERROR;
 
-    return ferror(f);
+    *avrg /= (end_pos - start_pos + 1);
+    return 0;
 }

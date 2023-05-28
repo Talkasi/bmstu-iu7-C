@@ -10,6 +10,18 @@
 #define FILE_SIZE_ERROR 4
 #define PRINTING_ERROR 5
 
+/*
+ * Usage:
+- `n file`: fill binary `file` with `n` numbers, where n itself is a number
+- `p file`: print numbers from binary `file`
+- `s file`: sort numbers in binary `file`
+ *
+ * Used int type: int32_t
+ * Note: It is more safe to use int32_t when working with binary files,
+ * because it makes program more portable.
+ *
+ * Sorting algorithm used: bubble sort in increasing order.
+ */
 int main(int argc, char *argv[])
 {
     if (argc != 3)
@@ -38,7 +50,7 @@ int main(int argc, char *argv[])
             return FILE_SIZE_ERROR;
         }
 
-        int rc = print(f);
+        int rc = print_nums(f);
         fclose(f);
 
         if (rc)

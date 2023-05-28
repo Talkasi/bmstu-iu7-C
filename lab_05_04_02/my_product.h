@@ -3,6 +3,8 @@
 #include <inttypes.h>
 #include <stdio.h>
 
+#define WRONG_FILE_ERROR -1
+
 #define MAX_STR_LEN 256
 #define MAX_NAME_LEN 30
 #define MAX_MFR_LEN 15
@@ -16,10 +18,11 @@ struct product
 };
 
 long file_size(FILE *f);
+size_t line_scan(FILE *f, char *s, size_t max_s_len);
+
 int read_data(FILE *f, struct product p[], size_t *n);
 int save_data(FILE *f, struct product p[], size_t n);
 void sort_data(struct product p[], size_t n);
-size_t line_scan(FILE *f, char *s, size_t max_s_len);
 void insert_data(struct product p[], size_t *n, struct product *new_p);
 void print_data(struct product p[], size_t n);
 size_t print_spec_data(struct product p[], size_t n, char *substr);

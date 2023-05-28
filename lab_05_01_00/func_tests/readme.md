@@ -7,7 +7,7 @@
 - All positive numbers following negatives are the same;
 - Positive number after negative one;
 - Negative number in the end of the string;
-- Multiple strings;
+- Multiple strings.
 ## Negative tests
 - File is empty;
 - Only negatives;

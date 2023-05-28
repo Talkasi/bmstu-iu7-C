@@ -9,16 +9,11 @@ size_t line_scan(FILE *f, char *s, size_t max_s_len)
         return max_s_len + 1;
 
     char temp_s[MAX_STR_LEN + 1];
-    char *temp_p = fgets(temp_s, MAX_STR_LEN + 1, f);
-
-    if (temp_p == NULL)
-    {
-        s[0] = '\0';
+    if (fgets(temp_s, MAX_STR_LEN + 1, f) == NULL)
         return 0;
-    }
 
-    size_t len_temp_s = strlen(temp_p);
-    if ((len_temp_s == max_s_len + 1 && temp_s[len_temp_s - 1] != '\n') || len_temp_s > max_s_len)
+    size_t len_temp_s = strlen(temp_s);
+    if ((len_temp_s == max_s_len + 1 && temp_s[len_temp_s - 1] != '\n') || len_temp_s > max_s_len + 1)
         return max_s_len + 1;
 
     if (temp_s[len_temp_s - 1] == '\n')
@@ -35,7 +30,6 @@ int read_data(FILE *f, struct product p[], size_t *n)
     char temp[MAX_STR_LEN];
 
     *n = 0;
-
     size_t i = 0;
     int rc;
     while ((rc = line_scan(f, temp, MAX_STR_LEN)) != 0 && rc != MAX_STR_LEN + 1)
@@ -45,14 +39,14 @@ int read_data(FILE *f, struct product p[], size_t *n)
             if (strlen(temp) <= MAX_NAME_LEN)
                 strcpy(p[i / 4].name, temp);
             else
-                return -1;
+                return WRONG_FILE_ERROR;
         }
         else if (i % 4 == 1)
         {
             if (strlen(temp) <= MAX_MFR_LEN)
                 strcpy(p[i / 4].mfr, temp);
             else
-                return -1;
+                return WRONG_FILE_ERROR;
         }
         else if (i % 4 == 2)
         {
@@ -60,7 +54,7 @@ int read_data(FILE *f, struct product p[], size_t *n)
             if ((price = atoi(temp)) != 0)
                 p[i / 4].price = price;
             else
-                return -1;
+                return WRONG_FILE_ERROR;
         }
         else if (i % 4 == 3)
         {
@@ -68,13 +62,13 @@ int read_data(FILE *f, struct product p[], size_t *n)
             if ((number = atoi(temp)) != 0)
                 p[i / 4].n = number;
             else
-                return -1;
+                return WRONG_FILE_ERROR;
         }
         ++i;
     }
 
     if (i % 4 != 0 || rc == MAX_STR_LEN + 1)
-        return -1;
+        return WRONG_FILE_ERROR;
 
     *n = i / 4;
     return ferror(f);
