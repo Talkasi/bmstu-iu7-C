@@ -10,75 +10,51 @@
 #define NO_SPEC_DATA 7
 #define WRONG_INPUT_PARAMETER 8
 
-int sort_text(char *dst_path, char *src_path);
-int name_text(char *f_path, char *substr);
-int add_text(char *f_path);
+int stext(char *dst_path, char *src_path);
+int ftext(char *f_path, char *substr);
+int atext(char *f_path);
 
 int scan_data(struct product *new_p);
 
 int main(int argc, char *argv[])
 {
     if (argc < 3)
-    {
-        printf("Usage:\nprogram st SRC_FILE DST_FILE\nprogram ft FILE SUBSTR\nprogram at FILE\n");
         return WRONG_PARAMETERS;
-    }
 
     if (strcmp(argv[1], "st") == 0)
     {
         if (argc != 4)
-        {
-            printf("Usage: program st SRC_FILE DST_FILE\n");
             return WRONG_PARAMETERS;
-        }
 
-        int rc = sort_text(argv[3], argv[2]);
+        int rc = stext(argv[3], argv[2]);
         if (rc)
-        {
-            printf("Error while sorting\n");
             return rc;
-        }
     }
     else if (strcmp(argv[1], "ft") == 0)
     {
         if (argc != 4)
-        {
-            printf("Usage: program ft FILE SUBSTR\n");
             return WRONG_PARAMETERS;
-        }
 
-        int rc = name_text(argv[2], argv[3]);
+        int rc = ftext(argv[2], argv[3]);
         if (rc)
-        {
-            printf("Error while printing special products\n");
             return rc;
-        }
     }
     else if (strcmp(argv[1], "at") == 0)
     {
         if (argc != 3)
-        {
-            printf("Usage: program at FILE\n");
             return WRONG_PARAMETERS;
-        }
 
-        int rc = add_text(argv[2]);
+        int rc = atext(argv[2]);
         if (rc)
-        {
-            printf("Error while adding a product\n");
             return rc;
-        }
     }
     else
-    {
-        printf("Usage:\nprogram st SRC_FILE DST_FILE\nprogram ft FILE SUBSTR\nprogram at FILE\n");
         return WRONG_PARAMETERS;
-    }
 
     return 0;
 }
 
-int sort_text(char *dst_path, char *src_path)
+int stext(char *dst_path, char *src_path)
 {
     FILE *src_f = fopen(src_path, "r");
     if (src_f == NULL)
@@ -120,7 +96,7 @@ int sort_text(char *dst_path, char *src_path)
     return 0;
 }
 
-int name_text(char *f_path, char *substr)
+int ftext(char *f_path, char *substr)
 {
     FILE *f = fopen(f_path, "r");
     if (f == NULL)
@@ -151,7 +127,7 @@ int name_text(char *f_path, char *substr)
     return 0;
 }
 
-int add_text(char *f_path)
+int atext(char *f_path)
 {
     FILE *f = fopen(f_path, "r+");
     if (f == NULL)
@@ -164,10 +140,8 @@ int add_text(char *f_path)
     }
 
     struct product p[BUFSIZ];
-    size_t n;
-
     struct product new_p;
-
+    size_t n;
     int rc;
     if ((rc = scan_data(&new_p)))
     {
@@ -182,7 +156,6 @@ int add_text(char *f_path)
     }
 
     insert_data(p, &n, &new_p);
-
     if (save_data(f, p, n) == 0)
     {
         fclose(f);

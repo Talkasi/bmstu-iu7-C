@@ -1,10 +1,12 @@
 #include "my_file.h"
 #include <stdlib.h>
+#include <time.h>
 
 int rand_fill(FILE *f, size_t n_numbers)
 {
     fseek(f, 0, SEEK_SET);
     my_type rands[BUFSIZ];
+    srand(time(NULL));
     int rc;
 
     for (size_t i = 1; i <= n_numbers; ++i)
@@ -20,7 +22,7 @@ int rand_fill(FILE *f, size_t n_numbers)
     return 0;
 }
 
-int print(FILE *f)
+int print_nums(FILE *f)
 {
     fseek(f, 0, SEEK_SET);
     my_type number;

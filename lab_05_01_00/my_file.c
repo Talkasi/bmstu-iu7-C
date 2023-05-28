@@ -2,20 +2,23 @@
 
 int process(FILE *f, int *max)
 {
-    int number;
+    int cur_num;
     int were_neg = 0;
-    *max = -1;
+    *max = 0;
 
-    while (fscanf(f, "%d", &number) == 1)
+    while (fscanf(f, "%d", &cur_num) == 1)
     {
-        if (were_neg && *max < number)
-            *max = number;
+        if (were_neg && *max < cur_num)
+            *max = cur_num;
 
-        if (number < 0)
-            were_neg = 1;
-        else
-            were_neg = 0;
+        were_neg = (cur_num < 0);
     }
 
-    return ferror(f);
+    if (ferror(f))
+        return READING_ERROR;
+
+    if (*max == 0)
+        return NO_MAX_ERROR;
+
+    return 0;
 }
