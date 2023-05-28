@@ -9,21 +9,31 @@ NC='\033[0m' # No Color
 
 # Positive tests
 echo "> Positive tests"
-for in_stream_file in func_tests/data/pos_*_in_file.txt; do
-    test_number=$(echo "$in_stream_file" | grep -o "[0-9]*")
+for args_file in func_tests/data/pos_*_args.txt; do
+    test_number=$(echo "$args_file" | grep -o "[0-9]*")
     if [ -z "$test_number" ]; then
         echo "There are no positive tests"
         break
     fi
 
-    args_file="func_tests/data/pos_""$test_number""_args.txt"
-    out_stream_file="func_tests/data/pos_""$test_number""_out_file.txt"
-    result_stream_file="func_tests/data/pos_""$test_number""_result.txt"
-    in_file=$(ls "func_tests/data/pos_""$test_number""_in.txt" 2>/dev/null)
-    out_file=$(ls "func_tests/data/pos_""$test_number""_out.txt" 2>/dev/null)
+    state=$(sed 1p "$args_file" | head -c 2)
 
-    if func_tests/scripts/pos_case.sh "$out_stream_file" "$result_stream_file" "$args_file" \
-        "$in_file" "$out_file" "$in_stream_file"; then
+    if [ "$state" == "st" ]; then
+        out_stream_file="func_tests/data/pos_""$test_number""_out_file.txt"
+        in_stream_file="func_tests/data/pos_""$test_number""_result.txt"
+    fi
+
+    if [ "$state" == "ft" ]; then
+        out_stream_file="func_tests/data/pos_""$test_number""_out.txt"
+        in_stream_file="func_tests/data/pos_""$test_number""_in.txt"
+    fi
+
+    if [ "$state" == "at" ]; then
+        out_stream_file="func_tests/data/pos_""$test_number""_out_file.txt"
+        in_stream_file="func_tests/data/pos_""$test_number""_in_file.txt"
+    fi
+
+    if func_tests/scripts/pos_case.sh "$in_stream_file" "$out_stream_file" "$args_file"; then
         echo -e "Test ""$test_number"": ${GREEN}PASSED${NC}"
     else
         n_failed=$((n_failed + 1))

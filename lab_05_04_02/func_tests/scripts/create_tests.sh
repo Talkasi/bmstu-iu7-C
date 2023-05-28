@@ -1,7 +1,5 @@
 #!/bin/bash
 
-for args_file in "14" "15"; do
-    touch "../data/neg_""$args_file""_out_file.txt"
-    touch "../data/neg_""$args_file""_in_file.txt"
-    touch "../data/neg_""$args_file""_args.txt"
+for args_file in "01" "02" "03" "04" "05" "06"; do
+    touch "../data/pos_""$args_file""_in.txt"
 done

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./func_tests/scripts/preproc.sh
+
 ./clean.sh
 echo ">>> Check scripts start"
 ./check_scripts.sh
@@ -31,3 +33,5 @@ echo -e "\n>>> Undefined behavior sanitizer"
 ./build_debug_ubsan.sh
 ./func_tests/scripts/func_tests.sh
 ./clean.sh
+
+./func_tests/scripts/preproc.sh

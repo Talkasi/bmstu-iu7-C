@@ -1,12 +1,6 @@
 #!/bin/bash
-# Parameters:
-# 1 - "$out_stream_file"
-# 2 - "$result_stream_file"
-# 3 - "$args_file"
-# 4 - "$in_file"
-# 5 - "$out_file"
-# 6 - "$in_stream_file"
-if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+
+if [ -z "$2" ] || [ -z "$3" ]; then
     echo "Wrong parameters" >&2
     exit 1
 fi
@@ -14,25 +8,28 @@ fi
 file="$(mktemp)"
 command="./app.exe $(cat "$3")"
 
-if [ -z "$4" ]; then
-    $command >"$file"
-else
-    $command <"$4" >"$file"
+test_number=$(echo "$3" | grep -o "[0-9]*")
+in="func_tests/data/pos_""$test_number""_in.txt"
+$command <"$in" >"$file"
+
+state=$(sed 1p "$3" | head -c 2)
+if [ "$state" == "st" ] || [ "$state" == "at" ]; then
+    if [ -z "$1" ]; then
+        echo "Wrong parameters" >&2
+        exit 1
+    fi
+
+    if func_tests/scripts/comparator.sh "$1" "$2"; then
+        rm "$file"
+        exit 0
+    fi
 fi
 
-result_stream_file=$(ls "$2" 2> /dev/null)
-if [ -z "$result_stream_file" ]; then
-    result_stream_file="$6"
-fi
-
-if [ -n "$5" ] && func_tests/scripts/comparator.sh "$5" "$file"; then
-    rm "$file"
-    exit 0
-fi
-
-if [ -n "$2" ] && func_tests/scripts/comparator.sh "$1" "$result_stream_file"; then
-    rm "$file"
-    exit 0
+if [ "$state" == "ft" ]; then
+    if func_tests/scripts/comparator.sh "$2" "$file"; then
+        rm "$file"
+        exit 0
+    fi
 fi
 
 rm "$file"
