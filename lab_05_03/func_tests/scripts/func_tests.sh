@@ -1,7 +1,6 @@
 #!/bin/bash
 
-gcc -std=c99 -Wall -Werror -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion \
-    -Wvla -O3 ./func_tests/scripts/tests_converter.c -o tc.out
+./func_tests/scripts/build_tc.sh
 ./tc.out t2b
 rm tc.out
 

@@ -15,6 +15,7 @@
 #define T2B 1
 
 typedef int32_t my_type;
+typedef DIR dir;
 
 void search_dir(char *path, int state);
 int txt_to_bin(char in_path[MAX_DIR_LEN]);
@@ -44,7 +45,7 @@ int main(int argc, char *argv[])
 
 void search_dir(char *path, int state)
 {
-    struct __dirstream *dp = opendir(path);
+    dir *dp = opendir(path);
     if (!dp)
     {
         perror(path);

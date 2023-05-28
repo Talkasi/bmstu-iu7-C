@@ -33,34 +33,34 @@ int print_nums(FILE *f)
     return ferror(f);
 }
 
-my_type get_number_by_pos(FILE *f, size_t pos)
+int get_number_by_pos(FILE *f, my_type *num, size_t pos)
 {
     fseek(f, pos * sizeof(my_type), SEEK_SET);
-    my_type number;
-    fread(&number, sizeof(my_type), 1, f);
-    return number;
+    return (fread(num, sizeof(my_type), 1, f) != 1);
 }
 
-void put_number_by_pos(FILE *f, my_type number, size_t pos)
+int put_number_by_pos(FILE *f, my_type num, size_t pos)
 {
     fseek(f, pos * sizeof(my_type), SEEK_SET);
-    fwrite(&number, sizeof(my_type), 1, f);
+    return (fwrite(&num, sizeof(my_type), 1, f) != 1);
 }
 
-void bubble_sort(FILE *f)
+int bubble_sort(FILE *f)
 {
     fseek(f, 0, SEEK_SET);
     for (size_t i = 0; i < file_size(f) / sizeof(my_type); ++i)
         for (size_t j = 0; j < i; ++j)
         {
-            my_type a = get_number_by_pos(f, i);
-            my_type b = get_number_by_pos(f, j);
+            my_type a, b;
+            if (get_number_by_pos(f, &a, i) || get_number_by_pos(f, &b, j))
+                return 1;
+
             if (a < b)
-            {
-                put_number_by_pos(f, a, j);
-                put_number_by_pos(f, b, i);
-            }
+                if (put_number_by_pos(f, a, j) || put_number_by_pos(f, b, i))
+                    return 1;
         }
+
+    return 0;
 }
 
 size_t file_size(FILE *f)
