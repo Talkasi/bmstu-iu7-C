@@ -9,6 +9,7 @@
 #define FILE_OPEN_ERROR 3
 #define FILE_SIZE_ERROR 4
 #define PRINTING_ERROR 5
+#define SORTING_ERROR 6
 
 /*
  * Usage:
@@ -69,8 +70,10 @@ int main(int argc, char *argv[])
             return FILE_SIZE_ERROR;
         }
 
-        bubble_sort(f);
+        int rc = bubble_sort(f);
         fclose(f);
+        if (rc)
+            return SORTING_ERROR;
     }
     else
         return WRONG_PARAMETERS_ERROR;
