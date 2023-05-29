@@ -1,4 +1,5 @@
 #include "my_file.h"
+#include <math.h>
 
 int print_all_students(FILE *f)
 {
@@ -39,7 +40,7 @@ int delete_students_by_cond(FILE *f, double average)
     long cur_pos;
 
     while (fread(&cur_student, sizeof(struct student), 1, f) == 1)
-        if (cur_student.height >= (uint32_t)average)
+        if ((uint32_t)round(cur_student.height) >= average)
         {
             cur_pos = ftell(f);
             fseek(f, n * sizeof(struct student), SEEK_SET);
