@@ -5,3 +5,4 @@
 *.gch
 *.clang-format
 *.bin
+*.acme/dump
