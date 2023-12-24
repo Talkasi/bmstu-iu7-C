@@ -1,0 +1,16 @@
+Bill
+100000
+40
+Bob
+Bill
+1000009
+40
+cat
+Bob
+100
+1000
+apple
+world
+9999
+1
+onion

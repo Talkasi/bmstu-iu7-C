@@ -1,0 +1,12 @@
+onion
+100
+1000
+apple
+Bill
+1000009
+40
+cat
+world
+9999
+1
+onion
