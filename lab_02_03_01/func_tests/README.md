@@ -1,4 +1,4 @@
-# Lab_02_02_01 tests
+# Lab_02_03_01 tests
 ## Input data
 - Number of elements in an array `n`. Should be bigger than `0` and less than `11`;
 - `n` integer elements of an array.

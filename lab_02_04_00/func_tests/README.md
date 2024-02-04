@@ -1,4 +1,4 @@
-# Lab_02_02_01 tests
+# Lab_02_04_00 tests
 ## Input data
 - `n` integer elements of an array, end is non-integer or another input error.
 ## Output data

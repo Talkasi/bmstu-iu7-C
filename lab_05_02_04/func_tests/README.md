@@ -1,4 +1,4 @@
-# Lab_05_02_00 tests
+# Lab_05_02_04 tests
 ## Input data
 - File with numbers.
 ## Output data

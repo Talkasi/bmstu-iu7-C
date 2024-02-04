@@ -1,4 +1,4 @@
-# Lab_10_01 tests
+# Lab_10_01_01 tests
 ## Usage
 - `program IN_FILE OUT_FILE`
 ## Positive tests

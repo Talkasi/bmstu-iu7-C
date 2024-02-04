@@ -1,4 +1,4 @@
-# Lab_07_01_05 tests
+# Lab_12_05_01 tests
 ## Usage
 - app.exe IN_FILE OUT_FILE [f]
 * IN_FILE - name of the file with in data;
